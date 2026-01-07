@@ -442,3 +442,77 @@ input:checked+.slider:before {
     margin: 6rem auto;
     opacity: 0.3;
 }
+
+/* Print Styles */
+@media print {
+
+    body,
+    html {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    :root {
+        --bg-color: #ffffff !important;
+        --text-color: #000000 !important;
+        --text-secondary: #333333 !important;
+        --accent-color: #4f46e5 !important;
+        --card-bg: transparent !important;
+        --border-color: #cccccc !important;
+    }
+
+    /* Force all text to black if not overridden */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    span,
+    div {
+        color: #000000 !important;
+        text-shadow: none !important;
+    }
+
+    /* Hide Navigation and decorative elements */
+    nav,
+    .theme-switch-wrapper,
+    .glow-spot,
+    .footer {
+        display: none !important;
+    }
+
+    /* Ensure animations are disabled and content is visible */
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+    }
+
+    .reveal.active {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Adjust sizing for print */
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    section {
+        margin-bottom: 2rem !important;
+        page-break-inside: avoid;
+    }
+
+    /* Ensure links display their text clearly */
+    a {
+        text-decoration: underline;
+        color: #0000EE !important;
+    }
+}
