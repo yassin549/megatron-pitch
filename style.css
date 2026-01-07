@@ -643,7 +643,8 @@ input:checked+.slider:before {
     nav,
     .theme-switch-wrapper,
     .glow-spot,
-    .footer {
+    .footer,
+    .cta-button {
         display: none !important;
     }
 
