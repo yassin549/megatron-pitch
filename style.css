@@ -121,9 +121,8 @@ body.light-theme h1 {
 
 section {
     min-height: auto;
-    /* Allow content to dictate height on mobile */
-    padding: 5rem 0;
-    /* Mobile Padding */
+    padding: 3rem 0;
+    /* Reduced from 5rem */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -145,7 +144,7 @@ section {
     max-width: 900px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--text-secondary), transparent);
-    margin: 4rem auto;
+    margin: 0 auto;
     opacity: 0.3;
 }
 
@@ -594,7 +593,7 @@ input:checked+.slider:before {
 
     section {
         min-height: 100vh;
-        padding: 8rem 0;
+        padding: 6rem 0;
     }
 
     /* Navbar Desktop */
