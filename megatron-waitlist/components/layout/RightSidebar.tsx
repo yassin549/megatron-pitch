@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 // Custom Icons
@@ -40,7 +40,6 @@ const Icons = {
 };
 
 const navItems = [
-    { id: 'hero', label: 'Top', color: '#3B82F6' }, // Blue
     { id: 'the-vision', icon: Icons.Vision, label: 'Vision', color: '#60A5FA' }, // Light Blue
     { id: 'the-problem', icon: Icons.Problem, label: 'Problem', color: '#EF4444' }, // Red
     { id: 'the-solution', icon: Icons.Solution, label: 'Solution', color: '#F59E0B' }, // Amber
@@ -49,11 +48,84 @@ const navItems = [
     { id: 'the-future', icon: Icons.Future, label: 'Future', color: '#EC4899' }, // Pink
 ];
 
+function DockItem({
+    mouseY,
+    item,
+    isActive,
+    onClick
+}: {
+    mouseY: MotionValue;
+    item: any;
+    isActive: boolean;
+    onClick: () => void;
+}) {
+    const ref = useRef<HTMLButtonElement>(null);
+
+    const distance = useTransform(mouseY, (val) => {
+        const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
+        return val - bounds.y - bounds.height / 2;
+    });
+
+    const scaleSync = useTransform(distance, [-150, 0, 150], [1, 1.6, 1]);
+    const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+    return (
+        <motion.button
+            ref={ref}
+            onClick={onClick}
+            style={{ scale }}
+            className="group relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer z-20 outline-none"
+        >
+            {/* Tooltip */}
+            <motion.span
+                className="absolute right-14 px-3 py-1 bg-black/80 backdrop-blur border border-white/10 rounded-lg text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+            >
+                {item.label}
+            </motion.span>
+
+            {/* Active Pill (Background) - Dynamic Color */}
+            {isActive && (
+                <motion.div
+                    layoutId="activeBubble"
+                    className="absolute inset-0 rounded-full"
+                    style={{ backgroundColor: item.color }}
+                    initial={false}
+                    transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30
+                    }}
+                >
+                    <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse" />
+                </motion.div>
+            )}
+
+            {/* Icon */}
+            <span
+                className="relative z-10 transition-colors duration-200"
+                style={{
+                    color: isActive ? '#FFFFFF' : item.color,
+                }}
+            >
+                <item.icon className={`w-6 h-6 ${isActive ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+            </span>
+        </motion.button>
+    );
+}
+
 export default function RightSidebar() {
     const [activeSection, setActiveSection] = useState('hero');
+    const mouseY = useMotionValue(0);
 
     useEffect(() => {
         const handleScroll = () => {
+            // Check Hero (exact, since it's top)
+            if (window.scrollY < window.innerHeight / 2) {
+                if (activeSection !== 'hero') setActiveSection('hero');
+                return;
+            }
+
+            // Check other sections
             const sections = navItems.map(item => document.getElementById(item.id));
             const scrollPosition = window.scrollY + window.innerHeight / 3;
 
@@ -72,28 +144,34 @@ export default function RightSidebar() {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [activeSection]);
 
     const scrollTo = (id: string) => {
+        if (id === 'hero') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
-        } else if (id === 'hero') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
-    const activeItem = navItems.find(item => item.id === activeSection) || navItems[0];
-
     return (
-        <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
-            <div className="glass-panel p-2 rounded-full bg-void/30 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-4 relative">
+        <nav
+            onMouseMove={(e) => mouseY.set(e.clientY)}
+            onMouseLeave={() => mouseY.set(Infinity)}
+            className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-6 items-center"
+        >
+            <div className="glass-panel px-3 py-4 rounded-full bg-void/30 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-4 shadow-2xl">
 
-                {/* Logo Top */}
-                <div
+                {/* Official Logo (Hero Link) */}
+                <motion.div
                     onClick={() => scrollTo('hero')}
-                    className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow hover:scale-110 transition-transform z-10"
+                    className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow z-10"
                     style={{ borderColor: activeSection === 'hero' ? '#3B82F6' : 'transparent' }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                 >
                     <Image
                         src="/logo.jpeg"
@@ -101,44 +179,21 @@ export default function RightSidebar() {
                         fill
                         className="object-cover"
                     />
-                </div>
+                </motion.div>
 
                 {/* Divider */}
-                <div className="w-4 h-[1px] bg-white/10" />
+                <div className="w-8 h-[1px] bg-white/10" />
 
-                {/* Navigation Icons */}
-                <div className="flex flex-col gap-2 relative">
-                    {navItems.slice(1).map((item) => (
-                        <button
+                {/* Vertical Mac Dock */}
+                <div className="flex flex-col gap-2 items-center">
+                    {navItems.map((item) => (
+                        <DockItem
                             key={item.id}
+                            mouseY={mouseY}
+                            item={item}
+                            isActive={activeSection === item.id}
                             onClick={() => scrollTo(item.id)}
-                            className="relative w-10 h-10 rounded-full flex items-center justify-center text-lg z-10 transition-colors group"
-                        >
-                            <span
-                                className={`transition-all duration-300 relative z-20 ${activeSection === item.id ? 'scale-110' : 'opacity-50 group-hover:opacity-100 group-hover:scale-110'}`}
-                                style={{ color: activeSection === item.id ? '#fff' : item.color }}
-                            >
-                                {item.icon && <item.icon className="w-5 h-5" />}
-                            </span>
-
-                            {/* Label Tooltip */}
-                            <span className="absolute right-12 px-2 py-1 rounded bg-black/80 text-xs text-primary-glow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-primary/20 backdrop-blur">
-                                {item.label}
-                            </span>
-
-                            {/* Active Pill Background */}
-                            {activeSection === item.id && (
-                                <motion.div
-                                    layoutId="activePill"
-                                    className="absolute inset-0 rounded-full"
-                                    style={{ backgroundColor: item.color }}
-                                    initial={false}
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                >
-                                    <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse" />
-                                </motion.div>
-                            )}
-                        </button>
+                        />
                     ))}
                 </div>
             </div>
