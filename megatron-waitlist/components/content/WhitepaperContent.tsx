@@ -3,6 +3,7 @@
 import React from 'react';
 import { whitepaperContent } from './whitepaperData';
 import { motion } from 'framer-motion';
+import { EyeDiagram, BrainDiagram, MarketDiagram } from './Diagrams';
 
 export default function WhitepaperContent() {
     const renderContent = () => {
@@ -13,7 +14,13 @@ export default function WhitepaperContent() {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
 
-            if (line.startsWith('# ')) {
+            if (line.includes('[DIAGRAM: EYE]')) {
+                elements.push(<EyeDiagram key={currentKey++} />);
+            } else if (line.includes('[DIAGRAM: BRAIN]')) {
+                elements.push(<BrainDiagram key={currentKey++} />);
+            } else if (line.includes('[DIAGRAM: MARKET]')) {
+                elements.push(<MarketDiagram key={currentKey++} />);
+            } else if (line.startsWith('# ')) {
                 elements.push(
                     <motion.h1
                         key={currentKey++}
