@@ -33,15 +33,18 @@ export default function WhitepaperContent() {
                     </motion.h1>
                 );
             } else if (line.startsWith('## ')) {
+                const title = line.replace('## ', '');
+                const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 elements.push(
                     <motion.h2
                         key={currentKey++}
+                        id={id}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="text-2xl md:text-3xl font-semibold mt-16 mb-6 text-primary-glow border-b border-primary/20 pb-4 font-space"
+                        className="text-2xl md:text-3xl font-semibold mt-16 mb-6 text-primary-glow border-b border-primary/20 pb-4 font-space scroll-mt-24"
                     >
-                        {line.replace('## ', '')}
+                        {title}
                     </motion.h2>
                 );
             } else if (line.startsWith('### ')) {
