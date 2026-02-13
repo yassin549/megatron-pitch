@@ -223,11 +223,11 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="glass rounded-3xl p-12 text-center space-y-8"
           >
-            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-nebula-500 shadow-glow">
+            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-nebula-500 shadow-glow bg-void p-4">
               <img
-                src="/founder.jpg"
-                alt="Yassin Khoualdi, Founder"
-                className="w-full h-full object-cover"
+                src="/logo.jpeg"
+                alt="Megatron Logo"
+                className="w-full h-full object-contain"
               />
             </div>
 

@@ -1,85 +1,271 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-void: #0A0A0F;
+  --color-void-50: #1A1A2E;
+  --color-void-100: #16162D;
+
+  --color-nebula: #6B21E0;
+  --color-nebula-50: #F5F3FF;
+  --color-nebula-100: #EDE9FE;
+  --color-nebula-200: #DDD6FE;
+  --color-nebula-300: #C4B5FD;
+  --color-nebula-400: #A78BFA;
+  --color-nebula-500: #8B5CF6;
+  --color-nebula-600: #7C3AED;
+  --color-nebula-700: #6D28D9;
+  --color-nebula-800: #5B21B6;
+  --color-nebula-900: #4C1D95;
+
+  --color-cyber: #06B6D4;
+  --color-cyber-50: #ECFEFF;
+  --color-cyber-100: #CFFAFE;
+  --color-cyber-200: #A5F3FC;
+  --color-cyber-300: #67E8F9;
+  --color-cyber-400: #22D3EE;
+  --color-cyber-500: #06B6D4;
+  --color-cyber-600: #0891B2;
+  --color-cyber-700: #0E7490;
+  --color-cyber-800: #155E75;
+  --color-cyber-900: #164E63;
+
+  --color-plasma: #F43F5E;
+  --color-plasma-50: #FFF1F2;
+  --color-plasma-100: #FFE4E6;
+  --color-plasma-200: #FECDD3;
+  --color-plasma-300: #FDA4AF;
+  --color-plasma-400: #FB7185;
+  --color-plasma-500: #F43F5E;
+  --color-plasma-600: #E11D48;
+  --color-plasma-700: #BE123C;
+  --color-plasma-800: #9F1239;
+  --color-plasma-900: #881337;
+
+  --color-ghost: rgba(255, 255, 255, 0.03);
+  --color-ghost-strong: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
+  --font-space: var(--font-space), sans-serif;
+  --font-inter: var(--font-inter), sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Animations */
+  --animate-morph: morph 8s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow-pulse: glowPulse 2s ease-in-out infinite;
+  --animate-neural-pulse: neuralPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-liquid-shift: liquidShift 10s ease infinite;
+  --animate-glitch: glitch 1s linear infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-scan: scan 8s linear infinite;
+  --animate-progress: progress 3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+
+  /* Background Images */
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+  --background-image-neural-grid: linear-gradient(rgba(107, 33, 224, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(107, 33, 224, 0.1) 1px, transparent 1px);
+  --background-image-shimmer-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+
+  /* Drop Shadow */
+  --drop-shadow-glow: 0 0 10px rgba(107, 33, 224, 0.8);
+  --drop-shadow-cyber: 0 0 10px rgba(6, 182, 212, 0.8);
+
+  /* Keyframes */
+  @keyframes morph {
+
+    0%,
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes glowPulse {
+
+    0%,
+    100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes neuralPulse {
+
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes liquidShift {
+
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+      transform: scale(1.1) rotate(180deg);
+    }
+  }
+
+  @keyframes glitch {
+
+    0%,
+    100% {
+      transform: translate(0);
+    }
+
+    20% {
+      transform: translate(-2px, 2px);
+    }
+
+    40% {
+      transform: translate(-2px, -2px);
+    }
+
+    60% {
+      transform: translate(2px, 2px);
+    }
+
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
+  }
+}
 
 /* Base Styles */
 @layer base {
-  * {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     border-color: rgba(255, 255, 255, 0.1);
   }
 
   body {
-    background-color: #0A0A0F;
+    background-color: var(--color-void);
     color: #ffffff;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 /* Custom Utilities */
-@layer utilities {
-  .text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    background-image: linear-gradient(to right, #A78BFA, #22D3EE, #FB7185);
-  }
-
-  .glass {
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
-    backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .glow-text {
-    text-shadow: 0 0 20px currentColor;
-  }
+@utility text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-nebula-400), var(--color-cyber-400), var(--color-plasma-400));
 }
 
-/* Animations */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
+@utility glass {
+  background: linear-gradient(to bottom right, var(--color-ghost), var(--color-ghost-strong));
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes glitch {
-
-  0%,
-  100% {
-    transform: translate(0);
-  }
-
-  20% {
-    transform: translate(-2px, 2px);
-  }
-
-  40% {
-    transform: translate(-2px, -2px);
-  }
-
-  60% {
-    transform: translate(2px, 2px);
-  }
-
-  80% {
-    transform: translate(2px, -2px);
-  }
+@utility glow-text {
+  text-shadow: 0 0 20px currentColor;
 }
 
-@keyframes scan {
-  0% {
-    transform: translateY(-100%);
-  }
+@utility bg-neural-grid {
+  background-image: var(--background-image-neural-grid);
+  background-size: 50px 50px;
+}
 
-  100% {
-    transform: translateY(100%);
-  }
+@utility shadow-glow-sm {
+  box-shadow: 0 0 10px rgba(107, 33, 224, 0.5);
+}
+
+@utility shadow-glow {
+  box-shadow: 0 0 20px rgba(107, 33, 224, 0.6);
+}
+
+@utility shadow-glow-lg {
+  box-shadow: 0 0 40px rgba(107, 33, 224, 0.7);
+}
+
+@utility shadow-cyber-glow {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+}
+
+@utility shadow-plasma-glow {
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
+}
+
+@utility shadow-depth {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+@utility gradient-text-animate {
+  background: linear-gradient(90deg,
+      var(--color-nebula-400),
+      var(--color-cyber-400),
+      var(--color-plasma-400),
+      var(--color-nebula-400));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
 }
 
 /* Scrollbar Styles */
@@ -89,22 +275,22 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #0A0A0F;
+  background-color: var(--color-void);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #7C3AED;
+  background-color: var(--color-nebula-600);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #8B5CF6;
+  background-color: var(--color-nebula-500);
 }
 
 /* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #7C3AED #0A0A0F;
+  scrollbar-color: var(--color-nebula-600) var(--color-void);
 }
 
 /* Accessibility */
@@ -121,7 +307,7 @@
 
 /* Focus Visible */
 :focus-visible {
-  outline: 2px solid #8B5CF6;
+  outline: 2px solid var(--color-nebula-500);
   outline-offset: 2px;
 }
 
@@ -129,23 +315,4 @@
 ::selection {
   background-color: rgba(124, 58, 237, 0.3);
   color: #ffffff;
-}
-
-/* Custom Gradient Text */
-.gradient-text-animate {
-  background: linear-gradient(90deg,
-      #A78BFA,
-      #22D3EE,
-      #FB7185,
-      #A78BFA);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-  to {
-    background-position: 200% center;
-  }
 }
