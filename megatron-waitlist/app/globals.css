@@ -249,19 +249,16 @@
   color: #ffffff;
 }
 
-/* Presentation-Style Section Containers */
+/* Standard Section Containers */
 .section-container {
-  min-height: 100vh;
-  padding: 8rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: auto;
+  padding: 6rem 1.5rem;
+  display: block;
   position: relative;
 }
 
 @media (max-width: 768px) {
   .section-container {
-    min-height: auto;
     padding: 4rem 1.5rem;
   }
 }
@@ -331,7 +328,8 @@ a:focus-visible {
 }
 
 /* Improved List Spacing */
-ul, ol {
+ul,
+ol {
   padding-left: 1.5rem;
 }
 
@@ -350,6 +348,7 @@ strong {
 
 /* Reduce Motion for Accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   ::before,
   ::after {

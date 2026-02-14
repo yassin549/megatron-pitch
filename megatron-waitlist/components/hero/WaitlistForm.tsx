@@ -253,7 +253,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                         <button
                             type="submit"
                             disabled={isSubmitting || !email}
-                            className="flex-1 group/btn relative overflow-hidden px-6 py-4 bg-gradient-to-r from-nebula-600 to-cyber-600 hover:from-nebula-500 hover:to-cyber-500 text-white rounded-lg font-semibold transition-all duration-300 shadow-glow hover:shadow-glow-lg disabled:opacity-50 disabled:cursor-not-allowed text-center"
+                            className="flex-1 group/btn relative overflow-hidden px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 disabled:opacity-50 disabled:cursor-not-allowed text-center border border-blue-500"
                         >
                             <motion.div
                                 className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10"
@@ -279,10 +279,10 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             href="https://megatron-beta.vercel.app"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-lg font-semibold transition-all group"
+                            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 text-blue-100 rounded-lg font-semibold transition-all group"
                         >
                             <span>View MVP</span>
-                            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         </a>
