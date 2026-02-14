@@ -33,9 +33,12 @@ export const metadata: Metadata = {
     title: 'Megatron | Financialize Reality',
     description: 'Trade what moves the world. AI-powered markets for every data trend.',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
+  initialScale: 1,
+},
+  icons: {
+    icon: '/logo.jpeg',
+    shortcut: '/logo.jpeg',
+    apple: '/logo.jpeg',
   },
 };
 
