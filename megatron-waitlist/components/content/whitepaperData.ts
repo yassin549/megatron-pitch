@@ -2,7 +2,7 @@ export const whitepaperContent = `
 # Megatron
 ## Financializing the World's Information
 
-**Founder:** Yassin Khoualdi
+**Author:** Yacine Khoualdi (Founder)
 **Version:** 1.0
 
 ---

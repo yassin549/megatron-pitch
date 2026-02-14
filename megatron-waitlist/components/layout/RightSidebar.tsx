@@ -71,22 +71,6 @@ function DockItem({
                 {item.label}
             </motion.span>
 
-            {/* Active Pill (Background) - Glassmorphic & Smaller */}
-            {isActive && (
-                <motion.div
-                    layoutId="activeBubble"
-                    className="absolute w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
-                    style={{
-                        boxShadow: `0 0 20px ${item.color}40` // Subtle colored glow based on section color
-                    }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30
-                    }}
-                />
-            )}
-
             {/* Icon */}
             <span
                 className="relative z-10 transition-colors duration-200"
@@ -95,6 +79,18 @@ function DockItem({
                 }}
             >
                 <item.icon className={`w-6 h-6 ${isActive ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+                {/* Simple Dot Indicator (macOS style) */}
+                <AnimatePresence>
+                    {isActive && (
+                        <motion.div
+                            layoutId="activeDot"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0 }}
+                            className="absolute -right-3 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                        />
+                    )}
+                </AnimatePresence>
             </span>
         </motion.button>
     );

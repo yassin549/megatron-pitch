@@ -1,7 +1,7 @@
 # Megatron — Financializing the World’s Information
 
-**Founder:** Yassin Khoualdi  
-**Version:** 1.0
+**Author:** Yacine Khoualdi (Founder)  
+**Date:** February 2026  
 
 ---
 

@@ -32,13 +32,12 @@ export default function HomePage() {
                                 V1.0 PUBLIC BETA
                             </div>
                             <h1 className="text-5xl md:text-7xl font-bold font-space leading-tight">
-                                Trade the future. <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-200 to-primary-glow animate-gradient">Trade everything.</span>
+                                megatron
                             </h1>
                         </div>
 
                         <p className="text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
-                            If it has measurable data, it has a ticker.
+                            monitor the internet in 1 platform
                         </p>
 
                         <div className="flex gap-4 justify-center md:justify-start text-sm font-mono text-gray-500">
@@ -46,8 +45,6 @@ export default function HomePage() {
                                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                 Operational
                             </span>
-                            <span>•</span>
-                            <span>Arbitrum L2</span>
                         </div>
                     </motion.div>
 
