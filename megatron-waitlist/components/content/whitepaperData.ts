@@ -2,121 +2,115 @@ export const whitepaperContent = `
 # Megatron
 ## Financializing the World's Information
 
-**Founder:** Yassin Khoualdi  
+**Founder:** Yassin Khoualdi
 **Version:** 1.0
 
 ---
 
 ## The Vision
-**If You Can Measure It, You Can Trade It.**
+**If you can measure it, you can trade it.**
 
-Imagine sensing a political shift before the polls, or a crypto trend before the charts moves. Historically, you had two bad choices:
-1. **Wait** (and miss out).
-2. **Guess** (buy a proxy stock and hope).
+Megatron aims to make the world's information liquid and investable: political momentum, AI hiring trends, public sentiment around public figures, regulatory pressure, and cultural virality — all become tradable instruments with professional risk tools.
 
-Megatron changes this. We turn **data into tickers**.
-- **Elections?** Trade them.
-- **Climate?** Hedge it.
-- **Viral Trends?** Long or short them.
-
-We aren't just a casino. We are a **Truth Machine**. Prices that react to real-world data tell us what is *actually* happening.
+Instead of binary prediction bets or company-centric stocks, Megatron turns signals — **sentiment, adoption, regulatory risk, event momentum** — into continuously priced instruments that traders can buy, sell, hedge, and size like equities or options.
 
 ---
 
 ## The Problem
-Why hasn't this been done? Because turning "info" into "money" is hard.
+Why do existing systems fail?
 
-### 1. Who Decides the Truth?
-Trading "Biden's Approval" requires an Oracle.
-- **Humans?** Slow and biased.
-- **Voting?** Easily manipulated.
-- **Chainlink?** Too expensive for complex data ($0.50/update kills the model).
+### 1. Narrow Priceable Universe
+Public markets focus on companies and macro instruments. Retail and many institutional traders can't express conviction about the narratives that actually move their world.
 
-### 2. Who Provides Liquidity?
-New markets are empty. If you want to buy "Regulation Risk", who sells it to you? Without a market maker, there is no trade.
+### 2. Binary Outcomes Dominate
+Prediction markets reduce complex, continuous phenomena into yes/no outcomes. That creates blunt payoffs and poor risk management.
 
-### 3. The "Binary" Trap
-Prediction markets (like Polymarket) are "Yes/No". But reality is fluid. Trends rise and fall. We need to trade the **flow**, not just the end result.
+### 3. Trustworthy Price Formation is Hard
+Turning noisy public data into reliable, auditable prices requires robust data pipelines, low-latency models, and defensible mechanisms that prevent volume from becoming the sole driver of price.
 
 ---
 
-## The Solution: The Megatron Engine
+## The Solution
 
-We built a closed-loop system to solve all three.
+Megatron is a platform that:
+
+1. **Quantifies narratives and variables** from the open web and public datasets.
+2. **Builds continuous synthetic "stocks"** that represent the real-time state and momentum of an underlying variable.
+3. **Separates price formation from trading activity:** prices reflect real-world signals (data + models); trading provides liquidity and exposure without being the primary driver of price.
+
+---
+
+## Core Product Components
 
 ### [DIAGRAM: EYE]
 
-### 1. The Eye (Monitoring)
-**It sees everything.**
-Unlike systems that wait for data, Megatron **hunts** for it. Our worker nodes scrape the web 24/7.
-- *We don't just search "Bitcoin".* 
-- *We search "Bitcoin regulation", "Bitcoin ETF flow", "Bitcoin sentiment".*
+### 1. Continuous Data Ingestion
+Automated pipelines collect signals from news, social platforms, technical publications, specialized datasets, and other public sources. The system indexes both granular facts and higher-level narratives (e.g., "AI hiring momentum" rather than raw tweet counts).
 
 ### [DIAGRAM: BRAIN]
 
-### 2. The Brain (Analysis)
-**It understands context.**
-Raw data is noise. Our **Local AI Engine** (1,000 tiny neural networks) reads every headline.
-- **Sentiment:** Good or Bad?
-- **Impact:** Does it matter?
-- **Confidence:** Is it real?
-*100% Local Inference means $0 cost. We read the entire internet for free.*
+### 2. AI-Based Impact Judgement
+A staged model stack classifies relevance, measures sentiment and magnitude, and estimates novelty and trustworthiness. Each incoming item is scored for:
+- **Relevance** to the instrument.
+- **Impact** on the underlying variable.
+- **Confidence** based on source credibility and corroboration.
+This creates a continuous, auditable signal stream that feeds the pricing layer.
 
 ### [DIAGRAM: MARKET]
 
-### 3. The Market (Pricing)
-**It never sleeps.**
-We use an **AI-Nudged Bonding Curve**.
-- **Automated Liquidity:** The math *is* the market maker. You can always buy or sell.
-- **AI Nudge:** When "The Brain" sees good news, it physically pushes the price up. 
-- **Result:** Prices reflect both *Human Demand* and *Fundamental Truth*.
+### 3. Pricing Engine (The Megatron Engine)
+The pricing engine ingests the scored signals and deterministically produces a real-time price for each instrument. Key principles:
+- **Data-driven price formation:** Prices move because reality changes, not because a trader's order pushed a price.
+- **Transparent, auditable updates:** Every price change is traceable to the data and scoring that caused it.
+- **Liquidity abstraction:** Buyers and sellers interact with a liquidity layer that enables exposure without directly changing the underlying signal.
+
+### 4. Market Layer & Orderbook
+A dynamic orderbook and automated liquidity mechanism let traders:
+- Take directional positions (long/short).
+- Use limit orders and conditional orders.
+- Size exposure and apply risk primitives (caps, collars, hedges).
+Trading is peer-to-peer at engine-defined prices; large traders cannot arbitrarily "move" the signal.
 
 ---
 
-## Technical Deep Dive
+## Why This is Different
 
-### Local AI Infrastructure
-We run our own AI. No OpenAI. No HuggingFace API bills.
+**Megatron is pricing the present — not gambling on a single future date.**
 
-**The Dual-Stage Sentinel:**
-1.  **Speed Filter (DistilBERT):** fast. Checks 1000s of texts/sec. "Is this relevant?"
-2.  **Deep Thinker (Qwen-0.5B):** Smart. If relevant, it analyzes "Why?" and "How much?".
+Traditional Markets focus on companies and assets; prices are driven by order flow; universe is limited.
 
-**Result:**
-- **Cost:** $0.00
-- **Speed:** <100ms
-- **Privacy:** 100% Offline
+Prediction Markets focus on binary events; payoffs are all-or-nothing; outcomes are deterministic.
 
-### The Bonding Curve
-$$ P(S) = m \\cdot S + b $$
-This formula guarantees liquidity. But we added a variable: **AI Impact**. 
-When news hits, we shift $b$ (Base Price).
-- **Good News** -> Base Price goes UP.
-- **Bad News** -> Base Price goes DOWN.
+**Megatron** focuses on narratives and variables; prices are continuous and data-driven; the market surface is practically infinite.
 
 ---
 
-## Results
-We tested against the giants.
+## Business Model
 
-- **Cost:** Megatron ($222/day) vs Cloud ($920/day). **76% Savings.**
-- **Speed:** We react to news in **<500ms**.
-- **Accuracy:** Our local AI matches GPT-4 **88%** of the time, for free.
+**Transaction Fees**
+A transparent fee on executed trades (0.05% per closed trade).
+
+**Institutional APIs & Data Licensing**
+Real-time pricing feeds, volume/position analytics, and programmatic execution for funds and research clients.
+
+**Platform Services**
+White-label or embedded data products for analytics and media.
+
+*Margins are high: trading is platform infrastructure with low marginal costs; API/data products sell at premium unit economics.*
 
 ---
 
-## The Future
-This is Version 1.0.
+## Roadmap
 
-- **Limit Orders:** "Buy if Approval > 45%".
-- **Decentralization:** Run "The Brain" on your own laptop.
-- **Governance:** You vote on what we track next.
+1. **Expand market library** (100s → millions of instruments).
+2. **Improve hedging** and options-like risk tools.
+3. **Scale liquidity** through partnerships and market makers.
+4. **Commercialize API products** for institutions.
 
 ---
 
 ## Conclusion
-Markets used to be for Gold and Oil.
-Now, they are for **Information**.
+Megatron transforms measurable reality into an investable surface. It gives traders instruments and tools to express conviction about the world around them — with continuous prices, professional risk primitives, and auditable signal-driven valuation.
 
-Welcome to Megatron.
+Welcome to the everything market.
 `;

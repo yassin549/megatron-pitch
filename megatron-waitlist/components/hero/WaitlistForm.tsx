@@ -182,103 +182,107 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-nebula-500 via-cyber-500 to-nebula-500 blur-xl opacity-20 animate-glow-pulse" />
                 </div>
 
-                <div className="relative z-10 space-y-6">
-                    <div>
-                        <h3 className="text-2xl font-bold text-white font-space mb-2">
-                            Join the Waitlist
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                            Be first to trade the future
-                        </p>
-                    </div>
+                <div>
+                    <h3 className="text-2xl font-bold text-white font-space mb-2">
+                        Join the Waitlist
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                        Be first to trade the variables that matter
+                    </p>
+                </div>
 
-                    {/* Name Input */}
-                    <div className="space-y-2">
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-300">
-                            Name <span className="text-gray-500">(optional)</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-nebula-500 focus:ring-2 focus:ring-nebula-500/20 transition-all"
-                            placeholder="Enter your name"
-                        />
-                    </div>
-
-                    {/* Email Input */}
-                    <div className="space-y-2">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                            Email *
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyber-500 focus:ring-2 focus:ring-cyber-500/20 transition-all"
-                            placeholder="you@example.com"
-                        />
-                    </div>
-
-                    {/* Honeypot - hidden from users */}
+                {/* Name Input */}
+                <div className="space-y-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                        Name <span className="text-gray-500">(optional)</span>
+                    </label>
                     <input
                         type="text"
-                        name="website"
-                        value={website}
-                        onChange={(e) => setWebsite(e.target.value)}
-                        className="hidden"
-                        tabIndex={-1}
-                        autoComplete="off"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-nebula-500 focus:ring-2 focus:ring-nebula-500/20 transition-all font-inter"
+                        placeholder="Enter your name"
                     />
+                </div>
 
-                    {/* Error Message */}
-                    <AnimatePresence>
-                        {error && (
-                            <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className="p-3 bg-plasma-500/10 border border-plasma-500/30 rounded-lg text-plasma-400 text-sm"
-                            >
-                                {error}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                {/* Email Input */}
+                <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                        Email *
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyber-500 focus:ring-2 focus:ring-cyber-500/20 transition-all font-inter"
+                        placeholder="you@example.com"
+                    />
+                </div>
 
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        disabled={isSubmitting || !email}
-                        className="group/btn w-full relative overflow-hidden px-6 py-4 bg-gradient-to-r from-nebula-600 to-cyber-600 hover:from-nebula-500 hover:to-cyber-500 text-white rounded-lg font-semibold transition-all duration-300 shadow-glow hover:shadow-glow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
+                {/* Honeypot - hidden from users */}
+                <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                />
+
+                {/* Error Message */}
+                <AnimatePresence>
+                    {error && (
                         <motion.div
-                            className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10"
-                            animate={{ x: [-1000, 1000] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                        />
-                        <span className="relative z-10">
-                            {isSubmitting ? (
-                                <span className="flex items-center justify-center gap-2">
-                                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                    </svg>
-                                    Joining...
-                                </span>
-                            ) : (
-                                'Secure My Spot →'
-                            )}
-                        </span>
-                    </button>
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="p-3 bg-plasma-500/10 border border-plasma-500/30 rounded-lg text-plasma-400 text-sm"
+                        >
+                            {error}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
-                    <p className="text-xs text-center text-gray-500">
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    disabled={isSubmitting || !email}
+                    className="group/btn w-full relative overflow-hidden px-6 py-4 bg-gradient-to-r from-nebula-600 to-cyber-600 hover:from-nebula-500 hover:to-cyber-500 text-white rounded-lg font-semibold transition-all duration-300 shadow-glow hover:shadow-glow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <motion.div
+                        className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10"
+                        animate={{ x: [-1000, 1000] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                    <span className="relative z-10">
+                        {isSubmitting ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                </svg>
+                                Joining...
+                            </span>
+                        ) : (
+                            'Secure My Spot →'
+                        )}
+                    </span>
+                </button>
+
+                <div className="space-y-2 text-center">
+                    <p className="text-xs text-gray-500">
                         No spam. Unsubscribe anytime.
+                    </p>
+                    <p className="text-[10px] text-gray-600 uppercase tracking-widest font-mono">
+                        Platform preview and early API access for waitlist members.
                     </p>
                 </div>
             </div>
-        </motion.form>
+        </div>
+        </motion.form >
     );
 }

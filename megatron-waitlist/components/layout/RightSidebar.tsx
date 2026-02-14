@@ -43,10 +43,10 @@ const Icons = {
 const navItems = [
     { id: 'the-vision', icon: Icons.Vision, label: 'Vision', color: '#60A5FA' },
     { id: 'the-problem', icon: Icons.Problem, label: 'Problem', color: '#EF4444' },
-    { id: 'the-solution-the-megatron-engine', icon: Icons.Solution, label: 'Solution', color: '#F59E0B' }, // Fixed ID
-    { id: 'technical-deep-dive', icon: Icons.Tech, label: 'Tech', color: '#10B981' },
-    { id: 'results', icon: Icons.Results, label: 'Results', color: '#8B5CF6' },
-    { id: 'the-future', icon: Icons.Future, label: 'Future', color: '#EC4899' },
+    { id: 'the-solution', icon: Icons.Solution, label: 'Solution', color: '#F59E0B' },
+    { id: 'core-product-components', icon: Icons.Tech, label: 'Product', color: '#10B981' },
+    { id: 'business-model', icon: Icons.Results, label: 'Business', color: '#8B5CF6' },
+    { id: 'roadmap', icon: Icons.Future, label: 'Roadmap', color: '#EC4899' },
 ];
 
 function DockItem({

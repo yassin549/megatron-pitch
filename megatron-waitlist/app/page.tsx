@@ -32,14 +32,13 @@ export default function HomePage() {
                                 V1.0 PUBLIC BETA
                             </div>
                             <h1 className="text-5xl md:text-7xl font-bold font-space leading-tight">
-                                Generic <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-200 to-primary-glow animate-gradient">Markets</span>
+                                Trade the future. <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-200 to-primary-glow animate-gradient">Trade everything.</span>
                             </h1>
                         </div>
 
                         <p className="text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
-                            The infrastructure to price the priceless. <br />
-                            From elections to memes, if it has data, it has a ticker.
+                            If it has measurable data, it has a ticker.
                         </p>
 
                         <div className="flex gap-4 justify-center md:justify-start text-sm font-mono text-gray-500">

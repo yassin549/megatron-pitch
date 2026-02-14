@@ -124,70 +124,93 @@ export const BrainDiagram = () => {
 export const MarketDiagram = () => {
     return (
         <div className="my-12 p-8 glass-panel rounded-xl bg-void relative overflow-hidden">
-            <div className="relative h-64 w-full">
-                {/* Curve SVG */}
-                <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    {/* Grid */}
-                    <path d="M0,100 L100,100" stroke="#334155" strokeWidth="0.5" />
-                    <path d="M0,0 L0,100" stroke="#334155" strokeWidth="0.5" />
+            <div className="flex flex-col items-center gap-8">
 
-                    {/* The Bonding Curve */}
-                    <motion.path
-                        d="M0,100 Q50,90 100,0" // Simulating exponential curve
-                        fill="none"
-                        stroke="#3B82F6"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        whileInView={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                    />
+                {/* Data-Driven Pricing Flow */}
+                <div className="w-full max-w-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                    {/* Data Signal */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="flex flex-col items-center gap-2"
+                    >
+                        <div className="w-16 h-16 rounded-full border border-primary/40 bg-void-100 flex items-center justify-center">
+                            <span className="text-2xl">📡</span>
+                        </div>
+                        <span className="text-xs text-gray-500 font-mono">Real-World Data</span>
+                    </motion.div>
 
-                    {/* Area under curve */}
-                    <motion.path
-                        d="M0,100 Q50,90 100,0 L100,100 L0,100 Z"
-                        fill="url(#areaGradient)"
-                        opacity="0.2"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 0.2 }}
-                        transition={{ delay: 1, duration: 1 }}
-                    />
+                    {/* Arrow */}
+                    <motion.div
+                        className="flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative hidden md:block"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <motion.div
+                            className="absolute top-0 left-0 w-8 h-full bg-primary blur-[2px]"
+                            animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                        />
+                    </motion.div>
 
-                    {/* Impact Shift Indication */}
-                    <motion.path
-                        d="M0,90 Q50,80 100,-10" // Shifted curve
-                        fill="none"
-                        stroke="#F43F5E"
-                        strokeWidth="1"
-                        strokeDasharray="2 2"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2, duration: 1 }}
-                    />
+                    {/* Pricing Engine */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-col items-center gap-2"
+                    >
+                        <div className="w-20 h-20 rounded-xl border-2 border-primary bg-void flex items-center justify-center shadow-glow relative">
+                            <div className="absolute inset-0 rounded-xl border border-primary/50 animate-ping opacity-10" />
+                            <span className="text-2xl">⚙️</span>
+                        </div>
+                        <span className="text-xs text-primary-glow font-mono font-bold">Megatron Engine</span>
+                    </motion.div>
 
-                    <defs>
-                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#3B82F6" />
-                            <stop offset="100%" stopColor="transparent" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+                    {/* Arrow */}
+                    <motion.div
+                        className="flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative hidden md:block"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                    >
+                        <motion.div
+                            className="absolute top-0 left-0 w-8 h-full bg-primary blur-[2px]"
+                            animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                        />
+                    </motion.div>
 
-                {/* Labels */}
-                <div className="absolute bottom-2 right-4 text-xs text-gray-500">Supply (Quantity)</div>
-                <div className="absolute top-4 left-2 text-xs text-gray-500">Price (USD)</div>
+                    {/* Price Output */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="flex flex-col items-center gap-2"
+                    >
+                        <div className="w-16 h-16 rounded-full border border-green-500/40 bg-void-100 flex items-center justify-center">
+                            <span className="text-2xl">📈</span>
+                        </div>
+                        <span className="text-xs text-gray-500 font-mono">Fair Price</span>
+                    </motion.div>
+                </div>
 
-                {/* AI Nudge Label */}
+                {/* Key Principle */}
                 <motion.div
-                    className="absolute top-1/4 left-1/2 bg-plasma-500/10 border border-plasma-500/50 text-plasma-400 px-2 py-1 rounded text-xs"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1, y: -20 }}
-                    transition={{ delay: 2.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1 }}
+                    className="text-center px-6 py-3 rounded-lg bg-void-50 border border-primary/20"
                 >
-                    AI Nudge Detected ↑
+                    <p className="text-sm text-gray-400 font-mono">
+                        <span className="text-primary-glow font-bold">Prices move because reality changes</span>, not because traders push them.
+                    </p>
                 </motion.div>
+
             </div>
-            <div className="mt-4 text-center text-xs text-gray-500 font-mono">
-                Fig 3. Automated Market Maker with AI Influence
+            <div className="mt-6 text-center text-xs text-gray-500 font-mono">
+                Fig 3. Data-Driven Pricing Engine
             </div>
         </div>
     );
