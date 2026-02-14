@@ -33,7 +33,7 @@ const navItems = [
     { id: 'the-problem-vision', icon: Icons.Problem, label: 'Problem & Vision', color: '#EF4444' },
     { id: 'the-solution', icon: Icons.Solution, label: 'The Solution', color: '#F59E0B' },
     { id: 'why-megatron', icon: Icons.Why, label: 'Why Megatron', color: '#10B981' },
-    { id: 'join-us', icon: Icons.Join, label: 'Join Us', color: '#8B5CF6' },
+    { id: 'claim-your-edge', icon: Icons.Join, label: 'Claim Your Edge', color: '#8B5CF6' },
 ];
 
 function DockItem({

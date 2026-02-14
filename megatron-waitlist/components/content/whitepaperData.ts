@@ -93,30 +93,30 @@ The infrastructure exists today: abundant data sources, powerful local AI models
 
 ---
 
-# Join Us
+# Claim Your Edge
 
-## Roadmap
+## What’s in it for you?
 
-1. **Expand market library** (100s → millions of instruments).
-2. **Improve hedging** and options-like risk tools.
-3. **Scale liquidity** through partnerships and market makers.
-4. **Commercialize API products** for institutions.
+1. **Access millions of unique markets** that don't exist anywhere else.
+2. **Hedge your real-world risks** with professional-grade risk tools.
+3. **Trade with deep liquidity** backed by institutional market makers.
+4. **Build on our platform** with high-performance institutional APIs.
 
-## Security & Trust
+## Your Security & Transparency
 
-- **Price formation pipelines** are auditable and largely enclosed within Megatron's control.
-- **External data providers** are used for discovery, but scoring, pricing, and matching are internal.
-- **Roadmap** includes optional decentralization of inference and community governance over tracked variables.
+- **Auditable Pricing:** You can verify how every signal is scored and priced.
+- **Internal Control:** Our matching engine and pricing pipelines are proprietary and protected.
+- **Governance:** Your voice matters—community governance will help decide which variables we track next.
 
-## Current Progress
+## Your Path to Trading
 
-- **MVP complete** (prototype deployed).
-- **Early professional users onboarded** for product feedback.
-- **Early revenue mechanics tested** through low-volume live flows.
+- **MVP Access:** The foundational prototype is live and ready for testing.
+- **Feedback Loop:** Join as an early user to help shape the final product.
+- **Early Rewards:** Benefit from early revenue mechanics and priority access.
 
-## The Everything Market
+## The Future of Your Trades
 
-Megatron transforms measurable reality into an investable surface. It gives traders instruments and tools to express conviction about the world around them — with continuous prices, professional risk primitives, and auditable signal-driven valuation.
+Megatron turns the world's noise into your investable surface. We give you the instruments to express conviction about the narratives you see unfolding every day—with continuous pricing, professional risk tools, and auditable transparency.
 
 **Welcome to the everything market.**
 `;
