@@ -39,13 +39,14 @@ const Icons = {
     ),
 };
 
+// Updated IDs to match generated content exactly
 const navItems = [
-    { id: 'the-vision', icon: Icons.Vision, label: 'Vision', color: '#60A5FA' }, // Light Blue
-    { id: 'the-problem', icon: Icons.Problem, label: 'Problem', color: '#EF4444' }, // Red
-    { id: 'the-solution', icon: Icons.Solution, label: 'Solution', color: '#F59E0B' }, // Amber
-    { id: 'technical-deep-dive', icon: Icons.Tech, label: 'Tech', color: '#10B981' }, // Emerald
-    { id: 'results', icon: Icons.Results, label: 'Results', color: '#8B5CF6' }, // Violet
-    { id: 'the-future', icon: Icons.Future, label: 'Future', color: '#EC4899' }, // Pink
+    { id: 'the-vision', icon: Icons.Vision, label: 'Vision', color: '#60A5FA' },
+    { id: 'the-problem', icon: Icons.Problem, label: 'Problem', color: '#EF4444' },
+    { id: 'the-solution-the-megatron-engine', icon: Icons.Solution, label: 'Solution', color: '#F59E0B' }, // Fixed ID
+    { id: 'technical-deep-dive', icon: Icons.Tech, label: 'Tech', color: '#10B981' },
+    { id: 'results', icon: Icons.Results, label: 'Results', color: '#8B5CF6' },
+    { id: 'the-future', icon: Icons.Future, label: 'Future', color: '#EC4899' },
 ];
 
 function DockItem({
@@ -66,8 +67,9 @@ function DockItem({
         return val - bounds.y - bounds.height / 2;
     });
 
-    const scaleSync = useTransform(distance, [-150, 0, 150], [1, 1.6, 1]);
-    const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
+    // Increased scale range (2.5x) and wider trigger area (-200 to 200)
+    const scaleSync = useTransform(distance, [-200, 0, 200], [1, 2.5, 1]);
+    const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 200, damping: 15 });
 
     return (
         <motion.button
@@ -78,21 +80,21 @@ function DockItem({
         >
             {/* Tooltip */}
             <motion.span
-                className="absolute right-14 px-3 py-1 bg-black/80 backdrop-blur border border-white/10 rounded-lg text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+                className="absolute right-16 px-3 py-1 bg-black/80 backdrop-blur border border-white/10 rounded-lg text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 origin-right"
+                style={{ scale: useTransform(scale, [1, 2.5], [1, 0.6]) }} // Counter-scale tooltip so it doesn't get huge
             >
                 {item.label}
             </motion.span>
 
-            {/* Active Pill (Background) - Dynamic Color */}
+            {/* Active Pill (Background) */}
             {isActive && (
                 <motion.div
                     layoutId="activeBubble"
                     className="absolute inset-0 rounded-full"
                     style={{ backgroundColor: item.color }}
-                    initial={false}
                     transition={{
                         type: "spring",
-                        stiffness: 300,
+                        stiffness: 400,
                         damping: 30
                     }}
                 >
@@ -115,34 +117,51 @@ function DockItem({
 
 export default function RightSidebar() {
     const [activeSection, setActiveSection] = useState('hero');
-    const mouseY = useMotionValue(0);
+    const mouseY = useMotionValue(Infinity);
 
     useEffect(() => {
         const handleScroll = () => {
-            // Check Hero (exact, since it's top)
-            if (window.scrollY < window.innerHeight / 2) {
+            const viewportCenter = window.scrollY + (window.innerHeight / 2);
+
+            // Special case for Hero (top of page)
+            if (viewportCenter < window.innerHeight) {
                 if (activeSection !== 'hero') setActiveSection('hero');
                 return;
             }
 
-            // Check other sections
-            const sections = navItems.map(item => document.getElementById(item.id));
-            const scrollPosition = window.scrollY + window.innerHeight / 3;
+            // Find section closest to center of viewport
+            let closestSection = activeSection;
+            let minDistance = Infinity;
 
-            for (const section of sections) {
-                if (section) {
-                    const top = section.offsetTop;
-                    const height = section.offsetHeight;
+            navItems.forEach(item => {
+                const element = document.getElementById(item.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const elementCenter = window.scrollY + rect.top + (rect.height / 2);
+                    const distance = Math.abs(viewportCenter - elementCenter);
 
-                    if (scrollPosition >= top && scrollPosition < top + height) {
-                        setActiveSection(section.id);
-                        break;
+                    // Check if we are within the section's bounds
+                    const top = element.offsetTop;
+                    const bottom = top + element.offsetHeight;
+
+                    // Priority: Is viewport center inside the element?
+                    if (viewportCenter >= top && viewportCenter <= bottom) {
+                        closestSection = item.id;
+                        minDistance = 0; // Perfect match
+                    } else if (distance < minDistance && minDistance !== 0) {
+                        // Fallback: Closest center
+                        minDistance = distance;
+                        closestSection = item.id;
                     }
                 }
+            });
+
+            if (closestSection !== activeSection) {
+                setActiveSection(closestSection);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, [activeSection]);
 
@@ -153,7 +172,9 @@ export default function RightSidebar() {
         }
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            const yOffset = -100; // Offset for better positioning
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
         }
     };
 
@@ -161,16 +182,16 @@ export default function RightSidebar() {
         <nav
             onMouseMove={(e) => mouseY.set(e.clientY)}
             onMouseLeave={() => mouseY.set(Infinity)}
-            className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-6 items-center"
+            className="fixed right-6 top-0 bottom-0 z-50 hidden md:flex flex-col justify-center items-center pointer-events-none" // pointer-events-none lets clicks pass through sidebar areas
         >
-            <div className="glass-panel px-3 py-4 rounded-full bg-void/30 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-4 shadow-2xl">
+            <div className="pointer-events-auto glass-panel px-3 py-6 rounded-full bg-void/40 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-6 shadow-2xl transition-height duration-300">
 
                 {/* Official Logo (Hero Link) */}
                 <motion.div
                     onClick={() => scrollTo('hero')}
-                    className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow z-10"
+                    className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow z-10 shrink-0"
                     style={{ borderColor: activeSection === 'hero' ? '#3B82F6' : 'transparent' }}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.95 }}
                 >
                     <Image
@@ -182,10 +203,10 @@ export default function RightSidebar() {
                 </motion.div>
 
                 {/* Divider */}
-                <div className="w-8 h-[1px] bg-white/10" />
+                <div className="w-8 h-[1px] bg-white/10 shrink-0" />
 
                 {/* Vertical Mac Dock */}
-                <div className="flex flex-col gap-2 items-center">
+                <div className="flex flex-col gap-3 items-center">
                     {navItems.map((item) => (
                         <DockItem
                             key={item.id}
