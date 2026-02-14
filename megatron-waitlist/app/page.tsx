@@ -37,7 +37,7 @@ export default function HomePage() {
                         </div>
 
                         <p className="text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
-                            monitor the internet in 1 platform
+                            monitor every measurable variable on the internet in the form of stocks.
                         </p>
 
                         <div className="flex gap-4 justify-center md:justify-start text-sm font-mono text-gray-500">
