@@ -1,29 +1,14 @@
 export const whitepaperContent = `
-# Megatron
-## Financializing the World's Information
-
-**Author:** Yacine Khoualdi (Founder)
-**Version:** 1.0
-
----
-
-## TL;DR
+# The Problem & Vision
 
 Megatron creates continuous, tradable markets for measurable real-world variables and narratives. Instead of binary prediction bets or company-centric stocks, Megatron turns signals — **sentiment, adoption, regulatory risk, event momentum** — into continuously priced instruments that traders can buy, sell, hedge, and size like equities or options.
-
----
 
 ## The Vision
 **If you can measure it, you can trade it.**
 
 Megatron aims to make the world's information liquid and investable: political momentum, AI hiring trends, public sentiment around public figures, regulatory pressure, and cultural virality — all become tradable instruments with professional risk tools.
 
-Instead of binary prediction bets or company-centric stocks, Megatron turns signals — **sentiment, adoption, regulatory risk, event momentum** — into continuously priced instruments that traders can buy, sell, hedge, and size like equities or options.
-
----
-
-## The Problem
-Why do existing systems fail?
+## Why Existing Systems Fail
 
 ### 1. Narrow Priceable Universe
 Public markets focus on companies and macro instruments. Retail and many institutional traders can't express conviction about the narratives that actually move their world.
@@ -36,7 +21,7 @@ Turning noisy public data into reliable, auditable prices requires robust data p
 
 ---
 
-## The Solution
+# The Solution
 
 Megatron is a platform that:
 
@@ -44,9 +29,7 @@ Megatron is a platform that:
 2. **Builds continuous synthetic "stocks"** that represent the real-time state and momentum of an underlying variable.
 3. **Separates price formation from trading activity:** prices reflect real-world signals (data + models); trading provides liquidity and exposure without being the primary driver of price.
 
----
-
-## Core Product Components
+## How It Works
 
 ### [DIAGRAM: EYE]
 
@@ -81,13 +64,13 @@ Trading is peer-to-peer at engine-defined prices; large traders cannot arbitrari
 
 ---
 
-## Why This is Different
+# Why Megatron
+
+## The Difference
 
 [COMPARISON_TABLE]
 
----
-
-## Business Model
+## Business Model & Timing
 
 **Transaction Fees**
 A transparent fee on executed trades (0.05% per closed trade).
@@ -100,8 +83,6 @@ White-label or embedded data products for analytics and media.
 
 *Margins are high: trading is platform infrastructure with low marginal costs; API/data products sell at premium unit economics.*
 
----
-
 ## Why Now
 
 **Retail trading adoption is large and growing.** Data availability and on-device/edge inference enable low-cost, low-latency signal processing.
@@ -112,6 +93,8 @@ The infrastructure exists today: abundant data sources, powerful local AI models
 
 ---
 
+# Join Us
+
 ## Roadmap
 
 1. **Expand market library** (100s → millions of instruments).
@@ -119,25 +102,19 @@ The infrastructure exists today: abundant data sources, powerful local AI models
 3. **Scale liquidity** through partnerships and market makers.
 4. **Commercialize API products** for institutions.
 
----
-
-## Security & Governance
+## Security & Trust
 
 - **Price formation pipelines** are auditable and largely enclosed within Megatron's control.
 - **External data providers** are used for discovery, but scoring, pricing, and matching are internal.
 - **Roadmap** includes optional decentralization of inference and community governance over tracked variables.
 
----
-
-## Current State & Traction
+## Current Progress
 
 - **MVP complete** (prototype deployed).
 - **Early professional users onboarded** for product feedback.
 - **Early revenue mechanics tested** through low-volume live flows.
 
----
-
-## Conclusion
+## The Everything Market
 
 Megatron transforms measurable reality into an investable surface. It gives traders instruments and tools to express conviction about the world around them — with continuous prices, professional risk primitives, and auditable signal-driven valuation.
 

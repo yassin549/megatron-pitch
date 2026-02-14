@@ -18,34 +18,62 @@ export default function HomePage() {
 
             {/* Hero Section with Inline Waitlist */}
             <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-32">
-                <div className="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+                <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
 
                     {/* Text Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="space-y-8 text-center md:text-left"
+                        className="space-y-10 text-center md:text-left"
                     >
                         <div>
-                            <div className="inline-block px-3 py-1 mb-4 rounded-full bg-primary/10 border border-primary/20 text-primary-glow text-xs font-mono tracking-wider">
-                                V1.0 PUBLIC BETA
+                            <div className="inline-block px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary-glow text-xs font-mono tracking-widest uppercase">
+                                V1.0 Public Beta
                             </div>
-                            <h1 className="text-5xl md:text-7xl font-bold font-space leading-tight">
-                                megatron
+
+                            {/* Enhanced Megatron Branding */}
+                            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-space leading-none mb-8">
+                                <span className="relative inline-block">
+                                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 blur-2xl opacity-50" />
+                                    <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-50 to-blue-100">
+                                        megatron
+                                    </span>
+                                </span>
                             </h1>
                         </div>
 
-                        <p className="text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
-                            monitor every measurable variable on the internet in the form of stocks.
-                        </p>
+                        {/* Enhanced Slogan */}
+                        <div className="space-y-4">
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.6 }}
+                                className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0"
+                            >
+                                monitor <span className="text-white font-medium">every measurable variable</span> on the internet
+                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5, duration: 0.6 }}
+                                className="text-xl md:text-2xl text-primary-glow font-mono italic"
+                            >
+                                in the form of stocks.
+                            </motion.p>
+                        </div>
 
-                        <div className="flex gap-4 justify-center md:justify-start text-sm font-mono text-gray-500">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.7 }}
+                            className="flex gap-4 justify-center md:justify-start text-sm font-mono text-gray-500"
+                        >
                             <span className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                 Operational
                             </span>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Waitlist Form - Prominently Displayed */}
@@ -70,7 +98,7 @@ export default function HomePage() {
                     animate={{ opacity: 1, y: [0, 10, 0] }}
                     transition={{ delay: 1, duration: 2, repeat: Infinity }}
                 >
-                    <span className="text-xs font-mono uppercase tracking-widest">Read Whitepaper</span>
+                    <span className="text-xs font-mono uppercase tracking-widest">Explore</span>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
                 </motion.div>
             </section>
