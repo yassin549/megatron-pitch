@@ -9,11 +9,11 @@ import ComparisonTable from './ComparisonTable';
 export default function WhitepaperContent() {
     const renderContent = () => {
         const lines = whitepaperContent.split('\n');
-        const elements: JSX.Element[] = [];
+        const elements: React.ReactElement[] = [];
         let currentKey = 0;
         let sectionNumber = 0;
         let inSection = false;
-        let sectionElements: JSX.Element[] = [];
+        let sectionElements: React.ReactElement[] = [];
 
         const flushSection = () => {
             if (sectionElements.length > 0) {
