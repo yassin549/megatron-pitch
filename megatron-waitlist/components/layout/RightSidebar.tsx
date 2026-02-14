@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 // Custom Icons
@@ -50,56 +50,41 @@ const navItems = [
 ];
 
 function DockItem({
-    mouseY,
     item,
     isActive,
     onClick
 }: {
-    mouseY: MotionValue;
     item: any;
     isActive: boolean;
     onClick: () => void;
 }) {
-    const ref = useRef<HTMLButtonElement>(null);
-
-    const distance = useTransform(mouseY, (val) => {
-        const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
-        return val - bounds.y - bounds.height / 2;
-    });
-
-    // Increased scale range (2.5x) and wider trigger area (-200 to 200)
-    const scaleSync = useTransform(distance, [-200, 0, 200], [1, 2.5, 1]);
-    const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 200, damping: 15 });
-
     return (
         <motion.button
-            ref={ref}
             onClick={onClick}
-            style={{ scale }}
+            whileHover={{ scale: 1.4 }}
             className="group relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer z-20 outline-none"
         >
             {/* Tooltip */}
             <motion.span
                 className="absolute right-16 px-3 py-1 bg-black/80 backdrop-blur border border-white/10 rounded-lg text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 origin-right"
-                style={{ scale: useTransform(scale, [1, 2.5], [1, 0.6]) }} // Counter-scale tooltip so it doesn't get huge
             >
                 {item.label}
             </motion.span>
 
-            {/* Active Pill (Background) */}
+            {/* Active Pill (Background) - Glassmorphic & Smaller */}
             {isActive && (
                 <motion.div
                     layoutId="activeBubble"
-                    className="absolute inset-0 rounded-full"
-                    style={{ backgroundColor: item.color }}
+                    className="absolute w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+                    style={{
+                        boxShadow: `0 0 20px ${item.color}40` // Subtle colored glow based on section color
+                    }}
                     transition={{
                         type: "spring",
                         stiffness: 400,
                         damping: 30
                     }}
-                >
-                    <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse" />
-                </motion.div>
+                />
             )}
 
             {/* Icon */}
@@ -117,7 +102,6 @@ function DockItem({
 
 export default function RightSidebar() {
     const [activeSection, setActiveSection] = useState('hero');
-    const mouseY = useMotionValue(Infinity);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -180,8 +164,6 @@ export default function RightSidebar() {
 
     return (
         <nav
-            onMouseMove={(e) => mouseY.set(e.clientY)}
-            onMouseLeave={() => mouseY.set(Infinity)}
             className="fixed right-6 top-0 bottom-0 z-50 hidden md:flex flex-col justify-center items-center pointer-events-none" // pointer-events-none lets clicks pass through sidebar areas
         >
             <div className="pointer-events-auto glass-panel px-3 py-6 rounded-full bg-void/40 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-6 shadow-2xl transition-height duration-300">
@@ -210,7 +192,6 @@ export default function RightSidebar() {
                     {navItems.map((item) => (
                         <DockItem
                             key={item.id}
-                            mouseY={mouseY}
                             item={item}
                             isActive={activeSection === item.id}
                             onClick={() => scrollTo(item.id)}
