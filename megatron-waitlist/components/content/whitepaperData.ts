@@ -7,6 +7,12 @@ export const whitepaperContent = `
 
 ---
 
+## TL;DR
+
+Megatron creates continuous, tradable markets for measurable real-world variables and narratives. Instead of binary prediction bets or company-centric stocks, Megatron turns signals — **sentiment, adoption, regulatory risk, event momentum** — into continuously priced instruments that traders can buy, sell, hedge, and size like equities or options.
+
+---
+
 ## The Vision
 **If you can measure it, you can trade it.**
 
@@ -54,6 +60,7 @@ A staged model stack classifies relevance, measures sentiment and magnitude, and
 - **Relevance** to the instrument.
 - **Impact** on the underlying variable.
 - **Confidence** based on source credibility and corroboration.
+
 This creates a continuous, auditable signal stream that feeds the pricing layer.
 
 ### [DIAGRAM: MARKET]
@@ -69,19 +76,14 @@ A dynamic orderbook and automated liquidity mechanism let traders:
 - Take directional positions (long/short).
 - Use limit orders and conditional orders.
 - Size exposure and apply risk primitives (caps, collars, hedges).
+
 Trading is peer-to-peer at engine-defined prices; large traders cannot arbitrarily "move" the signal.
 
 ---
 
 ## Why This is Different
 
-**Megatron is pricing the present — not gambling on a single future date.**
-
-Traditional Markets focus on companies and assets; prices are driven by order flow; universe is limited.
-
-Prediction Markets focus on binary events; payoffs are all-or-nothing; outcomes are deterministic.
-
-**Megatron** focuses on narratives and variables; prices are continuous and data-driven; the market surface is practically infinite.
+[COMPARISON_TABLE]
 
 ---
 
@@ -100,6 +102,16 @@ White-label or embedded data products for analytics and media.
 
 ---
 
+## Why Now
+
+**Retail trading adoption is large and growing.** Data availability and on-device/edge inference enable low-cost, low-latency signal processing.
+
+Prediction markets showed demand for event-based speculation — **Megatron generalizes that demand into continuous, risk-managed markets.**
+
+The infrastructure exists today: abundant data sources, powerful local AI models, and a generation of traders hungry for new instruments that reflect their view of the world.
+
+---
+
 ## Roadmap
 
 1. **Expand market library** (100s → millions of instruments).
@@ -109,8 +121,25 @@ White-label or embedded data products for analytics and media.
 
 ---
 
+## Security & Governance
+
+- **Price formation pipelines** are auditable and largely enclosed within Megatron's control.
+- **External data providers** are used for discovery, but scoring, pricing, and matching are internal.
+- **Roadmap** includes optional decentralization of inference and community governance over tracked variables.
+
+---
+
+## Current State & Traction
+
+- **MVP complete** (prototype deployed).
+- **Early professional users onboarded** for product feedback.
+- **Early revenue mechanics tested** through low-volume live flows.
+
+---
+
 ## Conclusion
+
 Megatron transforms measurable reality into an investable surface. It gives traders instruments and tools to express conviction about the world around them — with continuous prices, professional risk primitives, and auditable signal-driven valuation.
 
-Welcome to the everything market.
+**Welcome to the everything market.**
 `;

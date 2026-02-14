@@ -4,19 +4,18 @@ import { motion } from 'framer-motion';
 
 export const EyeDiagram = () => {
     return (
-        <div className="my-12 p-8 glass-panel rounded-xl bg-gradient-to-br from-void to-void-50 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-neural-grid opacity-20" />
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="my-16 p-6 md:p-10 glass-panel rounded-2xl bg-gradient-to-br from-void to-void-50 relative overflow-hidden group">
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
                 {/* Source Nodes */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-row md:flex-col gap-3 md:gap-4 flex-wrap justify-center">
                     {['News API', 'Socials', 'Crypto'].map((src, i) => (
                         <motion.div
                             key={i}
                             initial={{ x: -20, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
-                            transition={{ delay: i * 0.1 }}
-                            className="px-4 py-2 rounded-lg bg-void-100 border border-primary/20 text-sm text-gray-400 font-mono shadow-sm"
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1, duration: 0.4 }}
+                            className="px-5 py-3 rounded-xl bg-void-100 border border-primary/20 text-sm md:text-base text-gray-400 font-mono shadow-sm"
                         >
                             {src}
                         </motion.div>
@@ -24,7 +23,7 @@ export const EyeDiagram = () => {
                 </div>
 
                 {/* Connection Lines */}
-                <div className="flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative">
+                <div className="hidden md:block flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative">
                     <motion.div
                         className="absolute top-0 left-0 w-8 h-full bg-primary blur-[2px]"
                         animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
@@ -34,17 +33,21 @@ export const EyeDiagram = () => {
 
                 {/* The Eye Central Node */}
                 <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
                     whileHover={{ scale: 1.05 }}
-                    className="relative w-32 h-32 rounded-full border-2 border-primary bg-void flex items-center justify-center shadow-glow"
+                    className="relative w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-primary bg-void flex items-center justify-center shadow-glow"
                 >
                     <div className="absolute inset-0 rounded-full border border-primary/50 animate-ping opacity-20" />
-                    <div className="text-4xl">👁️</div>
-                    <div className="absolute -bottom-8 text-xs text-primary-glow font-mono whitespace-nowrap">
+                    <div className="text-4xl md:text-5xl">👁️</div>
+                    <div className="absolute -bottom-10 text-xs md:text-sm text-primary-glow font-mono whitespace-nowrap">
                         Scanning...
                     </div>
                 </motion.div>
             </div>
-            <div className="mt-4 text-center text-xs text-gray-500 font-mono">
+            <div className="mt-12 text-center text-xs md:text-sm text-gray-500 font-mono">
                 Fig 1. High-Frequency Data Ingestion
             </div>
         </div>
@@ -53,13 +56,19 @@ export const EyeDiagram = () => {
 
 export const BrainDiagram = () => {
     return (
-        <div className="my-12 p-8 glass-panel rounded-xl bg-void relative overflow-hidden">
-            <div className="flex flex-col items-center gap-6">
+        <div className="my-16 p-6 md:p-10 glass-panel rounded-2xl bg-void relative overflow-hidden">
+            <div className="flex flex-col items-center gap-8 md:gap-10">
 
                 {/* Input */}
-                <div className="w-full max-w-md p-4 bg-void-50 rounded border border-white/5 text-xs text-gray-400 font-mono">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full max-w-md p-5 md:p-6 bg-void-50 rounded-xl border border-white/5 text-sm md:text-base text-gray-400 font-mono"
+                >
                     "Bitcoin ETF approval likely this week..."
-                </div>
+                </motion.div>
 
                 {/* Processing Network */}
                 <div className="relative w-48 h-48">
@@ -100,20 +109,20 @@ export const BrainDiagram = () => {
                 </div>
 
                 {/* Output Metrics */}
-                <div className="grid grid-cols-3 gap-4 w-full max-w-md">
+                <div className="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-md">
                     {[
                         { label: 'Sentiment', val: 'POSITIVE', col: 'text-green-400' },
                         { label: 'Confidence', val: '98.2%', col: 'text-primary-glow' },
                         { label: 'Impact', val: 'HIGH', col: 'text-plasma-400' }
                     ].map((m, i) => (
-                        <div key={i} className="p-3 rounded bg-void-50 border border-white/5 text-center">
-                            <div className="text-[10px] text-gray-500 uppercase">{m.label}</div>
-                            <div className={`text-sm font-bold font-mono ${m.col}`}>{m.val}</div>
+                        <div key={i} className="p-3 md:p-4 rounded-lg bg-void-50 border border-white/5 text-center">
+                            <div className="text-[10px] md:text-xs text-gray-500 uppercase">{m.label}</div>
+                            <div className={`text-sm md:text-base font-bold font-mono ${m.col}`}>{m.val}</div>
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="mt-6 text-center text-xs text-gray-500 font-mono">
+            <div className="mt-8 text-center text-xs md:text-sm text-gray-500 font-mono">
                 Fig 2. Dual-Stage Neural Analysis
             </div>
         </div>
@@ -123,8 +132,8 @@ export const BrainDiagram = () => {
 
 export const MarketDiagram = () => {
     return (
-        <div className="my-12 p-8 glass-panel rounded-xl bg-void relative overflow-hidden">
-            <div className="flex flex-col items-center gap-8">
+        <div className="my-16 p-6 md:p-10 glass-panel rounded-2xl bg-void relative overflow-hidden">
+            <div className="flex flex-col items-center gap-10 md:gap-12">
 
                 {/* Data-Driven Pricing Flow */}
                 <div className="w-full max-w-lg flex flex-col md:flex-row items-center justify-between gap-6">
@@ -132,12 +141,13 @@ export const MarketDiagram = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         className="flex flex-col items-center gap-2"
                     >
                         <div className="w-16 h-16 rounded-full border border-primary/40 bg-void-100 flex items-center justify-center">
                             <span className="text-2xl">📡</span>
                         </div>
-                        <span className="text-xs text-gray-500 font-mono">Real-World Data</span>
+                        <span className="text-xs md:text-sm text-gray-500 font-mono">Real-World Data</span>
                     </motion.div>
 
                     {/* Arrow */}
@@ -145,6 +155,7 @@ export const MarketDiagram = () => {
                         className="flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative hidden md:block"
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
                         <motion.div
@@ -158,6 +169,7 @@ export const MarketDiagram = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                         className="flex flex-col items-center gap-2"
                     >
@@ -165,7 +177,7 @@ export const MarketDiagram = () => {
                             <div className="absolute inset-0 rounded-xl border border-primary/50 animate-ping opacity-10" />
                             <span className="text-2xl">⚙️</span>
                         </div>
-                        <span className="text-xs text-primary-glow font-mono font-bold">Megatron Engine</span>
+                        <span className="text-xs md:text-sm text-primary-glow font-mono font-bold">Megatron Engine</span>
                     </motion.div>
 
                     {/* Arrow */}
@@ -173,6 +185,7 @@ export const MarketDiagram = () => {
                         className="flex-1 h-[2px] bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10 relative hidden md:block"
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.5 }}
                     >
                         <motion.div
@@ -186,13 +199,14 @@ export const MarketDiagram = () => {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.6 }}
                         className="flex flex-col items-center gap-2"
                     >
                         <div className="w-16 h-16 rounded-full border border-green-500/40 bg-void-100 flex items-center justify-center">
                             <span className="text-2xl">📈</span>
                         </div>
-                        <span className="text-xs text-gray-500 font-mono">Fair Price</span>
+                        <span className="text-xs md:text-sm text-gray-500 font-mono">Fair Price</span>
                     </motion.div>
                 </div>
 
@@ -200,16 +214,17 @@ export const MarketDiagram = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: 1 }}
-                    className="text-center px-6 py-3 rounded-lg bg-void-50 border border-primary/20"
+                    className="text-center px-6 py-4 rounded-xl bg-void-50 border border-primary/20"
                 >
-                    <p className="text-sm text-gray-400 font-mono">
+                    <p className="text-sm md:text-base text-gray-400 font-mono">
                         <span className="text-primary-glow font-bold">Prices move because reality changes</span>, not because traders push them.
                     </p>
                 </motion.div>
 
             </div>
-            <div className="mt-6 text-center text-xs text-gray-500 font-mono">
+            <div className="mt-8 text-center text-xs md:text-sm text-gray-500 font-mono">
                 Fig 3. Data-Driven Pricing Engine
             </div>
         </div>

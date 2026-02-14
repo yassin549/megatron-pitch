@@ -248,3 +248,114 @@
   background-color: rgba(37, 99, 235, 0.3);
   color: #ffffff;
 }
+
+/* Presentation-Style Section Containers */
+.section-container {
+  min-height: 100vh;
+  padding: 8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    min-height: auto;
+    padding: 4rem 1.5rem;
+  }
+}
+
+.section-content {
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+/* Section Number Badge */
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary-glow);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .section-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Scroll Snap (can be enabled for even smoother section scrolling) */
+/* Uncomment below for scroll snap */
+/*
+@media (min-width: 768px) {
+  main {
+    scroll-snap-type: y proximity;
+  }
+  
+  .section-container {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+*/
+
+/* Enhanced Focus States for Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Improved List Spacing */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+/* Enhanced Strong Tag */
+strong {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Premium Typography Scale */
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
