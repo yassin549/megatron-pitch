@@ -28,18 +28,13 @@ export default function HomePage() {
                         className="space-y-10 text-center md:text-left"
                     >
                         <div>
-                            <div className="inline-block px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary-glow text-xs font-mono tracking-widest uppercase">
+                            <div className="inline-block px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono tracking-widest uppercase">
                                 V1.0 Public Beta
                             </div>
 
-                            {/* Enhanced Megatron Branding */}
-                            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-space leading-none mb-8">
-                                <span className="relative inline-block">
-                                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 blur-2xl opacity-50" />
-                                    <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-50 to-blue-100">
-                                        megatron
-                                    </span>
-                                </span>
+                            {/* Clean Gradient Typography - No Blur */}
+                            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-space leading-none mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
+                                megatron
                             </h1>
                         </div>
 
@@ -57,7 +52,7 @@ export default function HomePage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 0.6 }}
-                                className="text-xl md:text-2xl text-primary-glow font-mono italic"
+                                className="text-xl md:text-2xl text-cyan-400 font-mono italic"
                             >
                                 in the form of stocks.
                             </motion.p>

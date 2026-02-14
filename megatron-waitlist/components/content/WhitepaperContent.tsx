@@ -44,29 +44,17 @@ export default function WhitepaperContent() {
             } else if (line.includes('[DIAGRAM: MARKET]')) {
                 sectionElements.push(<MarketDiagram key={currentKey++} />);
             } else if (line.startsWith('# ')) {
-                sectionElements.push(
-                    <motion.h1
-                        key={currentKey++}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200 font-space leading-tight"
-                    >
-                        {line.replace('# ', '')}
-                    </motion.h1>
-                );
-            } else if (line.startsWith('## ')) {
-                // Flush previous section
+                // Flush previous section before new major section
                 flushSection();
 
-                const title = line.replace('## ', '');
+                const title = line.replace('# ', '');
                 const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 sectionNumber++;
 
                 sectionElements.push(
                     <motion.div
                         key={currentKey++}
+                        id={id}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -77,16 +65,30 @@ export default function WhitepaperContent() {
                             <span className="section-number">
                                 {String(sectionNumber).padStart(2, '0')}
                             </span>
-                            <h2
-                                id={id}
-                                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-space scroll-mt-24 flex-1"
+                            <h1
+                                className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200 font-space leading-tight flex-1"
                             >
                                 {title}
-                            </h2>
+                            </h1>
                         </div>
                     </motion.div>
                 );
                 inSection = true;
+            } else if (line.startsWith('## ')) {
+                const title = line.replace('## ', '');
+
+                sectionElements.push(
+                    <motion.h2
+                        key={currentKey++}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-blue-200"
+                    >
+                        {title}
+                    </motion.h2>
+                );
             } else if (line.startsWith('### ')) {
                 sectionElements.push(
                     <motion.h3
