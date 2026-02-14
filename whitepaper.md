@@ -10,7 +10,9 @@
 
 Information moves markets, but information itself has never been a market. Until now.
 
-**Megatron** is the first platform that continuously monitors the pulse of the internet—from political headwinds to viral cultural shifts—and transforms that data into liquid, tradeable assets. By combining a 24/7 web monitoring engine, a local AI analyst that reads thousands of articles per minute, and an automated market maker, we enable anyone to take a financial position on the outcome of real-world events as they unfold.
+**Megatron** is a platform to trade continuous, measurable trends and variables just like stocks.
+
+By combining a 24/7 web monitoring engine, a local AI analyst that reads thousands of articles per minute, and a dynamic orderbook, we transform the world's information into **Narrative-Backed Synthetic Stocks**. We enable anyone to take a financial position on the outcome of real-world events as they unfold—not as binary bets, but as liquid, continuous instruments.
 
 ---
 
@@ -25,6 +27,10 @@ Historically, you had two choices:
 There was no direct way to say: *"I believe this specific trend is accelerating."*
 
 Megatron changes this. We believe that **anything with a data trail should have a price ticker.** 
+
+- **Narrative-Backed Synthetic Stocks:** Every "stock" on Megatron represents a single real-world variable (e.g., "Global AI Hiring Momentum" or "Public Sentiment Around Elon Musk").
+- **Continuous Instruments:** These are not prediction contracts with binary outcomes. They are continuous instruments whose value evolves over time.
+- **Data-Driven Valuation:** The price of each stock reflects the real-time state and momentum of its underlying variable, not market hype or order-flow manipulation. 
 
 - **Election Probabilities?** Trade them like stocks.
 - **Climate Data?** Hedge against rising temperatures.
@@ -49,7 +55,7 @@ New markets are ghost towns. If you want to buy $100 of "Tech Regulation Risk," 
 
 ### 2.3 The "Now What?" Problem (Continuous vs. Discrete)
 Prediction markets (like Polymarket) force everything into a binary box: *"Will X happen by date Y?"* 
-But the world isn't binary. Trends flow. A political candidate's momentum rises and falls daily. We needed a system that tracks the **flow**, not just the final destination.
+But the world isn't binary. Trends flow. You can't navigate risk or manage upside/downside with a binary approach. People don't want to gamble on a coin flip; they want **continuous exposure** to variables. They want to hedge, size positions, and trade the *journey*, not just the destination.
 
 ---
 
@@ -59,7 +65,7 @@ We built a machine that solves these problems by combining three systems into on
 
 1. **The Eye (Monitoring):** Sees the data.
 2. **The Brain (Analysis):** Understands the data.
-3. **The Market (Pricing):** Prices the data.
+3. **The Market (Pricing):** Prices the data based on reality, not volume.
 
 ### 3.1 The Eye: A 24/7 Watchtower
 Most systems wait for data to be pushed to them. Megatron **pulls** it. 
@@ -77,20 +83,15 @@ Think of it as a team of 1,000 junior analysts living inside our servers. They r
 
 *Technical Note:* This reduces our AI costs by **100%** compared to API-based models, making continuous monitoring economically viable. (See Section 4 for the deep dive).
 
-### 3.3 The Market: The Robot Market Maker
-Once the Brain says *"Sentiment is up 5%"*, how does that become a price?
-We use a **Bonding Curve**—a mathematical formula that acts as an automated market maker.
+### 3.3 The Market: Separation of Price & Trading
+A key design principle of Megatron is the **Separation of Price Formation and Trading Activity**.
 
-**Concept:** Imagine a vending machine that automatically raises the price of a soda by 1 cent every time someone buys one, and lowers it when someone returns one.
-- **Result:** There is *always* a price. There is *always* liquidity. You can buy or sell anytime, even if no other human is there.
+1.  **Price Formation (The Engine):** Driven exclusively by data and AI models.
+2.  **Trading Activity (The Orderbook):** Purely peer-to-peer matching.
 
-**The "Nudge":** 
-Normally, bonding curves only move when people trade. Megatron adds a twist: **The AI Nudge.** 
-When our digital analysts detect breaking news, they mathematically "push" the bonding curve up or down. 
-- **Good News?** The automated price shifts up, rewarding early holders.
-- **Bad News?** The price shifts down.
+**Traders do not move the price.** They only decide at which price they are willing to buy or sell *relative* to the engine's determined value. 
 
-This creates a hybrid market where **prices reflect both human trading (supply/demand) and AI analysis (fundamental truth).**
+Even if there were zero traders, the stock price would still evolve normally, because it is primarily driven by external data, not volume. This prevents manipulation by "whales" and ensures the price is always a pure reflection of the underlying signal.
 
 ---
 ## 4. Under the Hood: Technical Deep Dive
@@ -218,37 +219,35 @@ const targetPrice = currentPrice * (1 + delta_percent / 100);
 
 ---
 
-### 4.3 Pricing Mechanism (The Math)
+### 4.3 Pricing Mechanism: The Megatron Engine
 
-**The Bonding Curve Formula:**
-We use a **Linear Bonding Curve** for predictable price discovery:
-$$ P(S) = m \cdot S + b $$ 
-Where:
-- $P(S)$ is the price at supply $S$.
-- $m$ is the slope (how fast price rises).
-- $b$ is the base price.
+**At the core is a proprietary pricing system that continuously updates the value of each stock based on real-world data.**
 
-**The Twist: Dynamic Shifting**
-Unlike static curves (Uniswap v1), our curve moves based on AI analysis.
-When the AI detects positive news (e.g., impact score > 80), we shift $b$ (base price) upward:
-$$ b_{new} = b_{old} \times (1 + \text{AI\_Delta}) $$
-This simulates fundamental value appreciation while maintaining liquidity.
+Instead of a bonding curve where $P = f(Supply)$, our pricing model is:
+
+$$ P_{new} = P_{old} \times (1 + \Delta_{AI}) $$
+
+Where $\Delta_{AI}$ is the aggregate impact score derived from:
+1.  **Sentiment Magnitude:** How positive/negative is the news?
+2.  **Source Credibility:** Is this the NYT or a random tweet?
+3.  **Novelty:** Is this new information or recycled noise?
+
+**Key Distinction:** 
+Traders do not push the price. Reality pushes the price.
+-   **Traditional Market:** Price moves because people buy.
+-   **Megatron Market:** Price moves because reality changed. People buy to profit from that change.
 
 ---
 
 ### 4.4 Liquidity & Market Mechanics
 
-**Bootstrapping:**
-New variables start in a "funding" phase. Users crowd-source initial liquidity (USDC). Once a soft cap is reached, trading activates.
+**Dynamic Orderbook:**
+On top of the pricing engine, Megatron runs a dynamic orderbook where buyers and sellers are matched peer-to-peer at engine-defined prices. 
+-   **Limit Orders:** "Buy if Sentiment Score > 80".
+-   **Market Orders:** Immediate filling against the internal liquidity pool.
 
-**Vesting (Anti-Rug):**
-To prevent early LPs from dumping, liquidity is locked with a vesting schedule:
-- 7 days: 25% unlocked
-- 30 days: 50% unlocked
-- 60 days: 75% unlocked
-- 90 days: 100% unlocked
-
-This ensures long-term commitment to the market's health.
+**Liquidity Pool:**
+Liquidity is purely internal to the platform. This allows for seamless speculation and hedging without the "slippage" mechanics of traditional AMMs. We match buyers and sellers; we do not trade against them.
 
 ---
 
@@ -278,7 +277,24 @@ We use **Turnkey** to generating non-custodial-grade wallets for users.
 
 ---
 
-## 6. Results: Does It Work?
+## 6. Business Model
+
+Megatron is a market infrastructure platform. We monetize market activity and data, not user losses.
+
+### 6.1 Transaction Fees (Primary Revenue)
+We charge a transparent **0.05% fee** on every executed trade.
+-   **High Margin:** Operational cost per trade is ~$0.003. Even on small trades ($1.00), we maintain ~95% margins.
+-   **Alignment:** Our revenue grows with volume and user success, not by betting against users.
+
+### 6.2 Institutional Access (API Licensing)
+We sell high-frequency data feeds to hedge funds, quant firms, and analytics platforms:
+-   **Sentiment Data:** Real-time "Impact Scores" for global events.
+-   **Volume Data:** Aggregated positioning (Long/Short ratios) on narrative stocks.
+-   **Programmatic Access:** Direct API for algorithmic trading execution.
+
+---
+
+## 7. Results: Does It Work?
 
 We tested Megatron in a live environment. The results validated our hypothesis:
 
@@ -297,7 +313,7 @@ We tested Megatron in a live environment. The results validated our hypothesis:
 
 ---
 
-## 7. The Future
+## 8. The Future
 
 This is just V1. The roadmap includes:
 
@@ -308,13 +324,13 @@ This is just V1. The roadmap includes:
 
 ---
 
-## 8. Conclusion
+## 9. Conclusion
 
 **Megatron is not just a trading platform; it is a new way to interact with reality.**
 
 For centuries, markets have been restricted to "hard" assets like gold and equity. But in the information age, "soft" assets—trends, reputation, influence—are arguably more valuable.
 
-By combining local AI with automated market makers, we have built the infrastructure to price the priceless. We invite you to join us in financializing the world's information.
+By combining local AI with a proprietary pricing engine, we have built the infrastructure to **price the priceless**. We invite you to join us in financializing the world's information.
 
 ---
 
