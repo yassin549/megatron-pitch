@@ -33,7 +33,7 @@ export default function HomePage() {
                             </div>
 
                             {/* Clean Gradient Typography - No Blur */}
-                            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-space leading-none mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-space leading-none mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
                                 megatron
                             </h1>
                         </div>

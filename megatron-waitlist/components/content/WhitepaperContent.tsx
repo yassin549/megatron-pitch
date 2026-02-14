@@ -32,8 +32,23 @@ export default function WhitepaperContent() {
             }
         };
 
+        // Helper to parse bold text
+        const parseText = (text: string) => {
+            const parts = text.split(/(\*\*.*?\*\*)/g);
+            return parts.map((part, index) => {
+                if (part.startsWith('**') && part.endsWith('**')) {
+                    return <strong key={index} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+                } else if (part.startsWith('*') && part.endsWith('*')) {
+                    return <em key={index} className="text-blue-200 not-italic font-medium">{part.slice(1, -1)}</em>;
+                }
+                return part;
+            });
+        };
+
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
+
+            // ... (previous checks for diagrams and headers remain the same) ...
 
             if (line.includes('[COMPARISON_TABLE]')) {
                 sectionElements.push(<ComparisonTable key={currentKey++} />);
@@ -44,9 +59,8 @@ export default function WhitepaperContent() {
             } else if (line.includes('[DIAGRAM: MARKET]')) {
                 sectionElements.push(<MarketDiagram key={currentKey++} />);
             } else if (line.startsWith('# ')) {
-                // Flush previous section before new major section
+                // ... (header H1 logic)
                 flushSection();
-
                 const title = line.replace('# ', '');
                 const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 sectionNumber++;
@@ -65,9 +79,7 @@ export default function WhitepaperContent() {
                             <span className="section-number">
                                 {String(sectionNumber).padStart(2, '0')}
                             </span>
-                            <h1
-                                className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200 font-space leading-tight flex-1"
-                            >
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200 font-space leading-tight flex-1">
                                 {title}
                             </h1>
                         </div>
@@ -75,8 +87,8 @@ export default function WhitepaperContent() {
                 );
                 inSection = true;
             } else if (line.startsWith('## ')) {
+                // ... (header H2 logic for subsections)
                 const title = line.replace('## ', '');
-
                 sectionElements.push(
                     <motion.h2
                         key={currentKey++}
@@ -118,7 +130,7 @@ export default function WhitepaperContent() {
                         transition={{ duration: 0.3 }}
                         className="ml-6 mb-3 text-base md:text-lg leading-relaxed text-gray-300 list-disc marker:text-primary"
                     >
-                        {line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')}
+                        {parseText(line.replace('- ', ''))}
                     </motion.li>
                 );
             } else if (line.match(/^\d+\. /)) {
@@ -131,15 +143,14 @@ export default function WhitepaperContent() {
                         transition={{ duration: 0.3 }}
                         className="ml-6 mb-3 text-base md:text-lg leading-relaxed text-gray-300 list-decimal marker:text-primary marker:font-bold"
                     >
-                        {line.replace(/^\d+\. /, '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')}
+                        {parseText(line.replace(/^\d+\. /, ''))}
                     </motion.li>
                 );
             } else if (line.includes('---')) {
                 // Section separator - flush current section
                 flushSection();
             } else if (line.trim() !== '') {
-                // Paragraph handling with bold support
-                const parts = line.split(/(\*\*.*?\*\*)/g);
+                // Paragraph handling
                 sectionElements.push(
                     <motion.p
                         key={currentKey++}
@@ -149,14 +160,7 @@ export default function WhitepaperContent() {
                         transition={{ duration: 0.4 }}
                         className="mb-6 text-base md:text-lg lg:text-xl leading-relaxed text-gray-300 font-inter max-w-3xl"
                     >
-                        {parts.map((part, index) => {
-                            if (part.startsWith('**') && part.endsWith('**')) {
-                                return <strong key={index} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
-                            } else if (part.startsWith('*') && part.endsWith('*')) {
-                                return <em key={index} className="text-blue-200 not-italic font-medium">{part.slice(1, -1)}</em>;
-                            }
-                            return part;
-                        })}
+                        {parseText(line)}
                     </motion.p>
                 );
             }
