@@ -176,10 +176,10 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
             {...animations.fadeInUp}
             className="relative group"
         >
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ghost to-ghost-strong backdrop-blur-2xl border border-white/10 hover:border-nebula-500/30 transition-all duration-500 p-8 shadow-depth">
-                {/* Animated Border Glow */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/[0.02] backdrop-blur-3xl border border-white/5 hover:border-blue-500/20 transition-all duration-500 p-8 shadow-2xl">
+                {/* Animated Border Glow - subtler */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-nebula-500 via-cyber-500 to-nebula-500 blur-xl opacity-20 animate-glow-pulse" />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-blue-500/10 blur-xl animate-glow-pulse" />
                 </div>
 
                 <div className="relative z-10 space-y-6">
@@ -194,22 +194,22 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
 
                     {/* Name Input */}
                     <div className="space-y-2">
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-300">
-                            Name <span className="text-gray-500">(optional)</span>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-400">
+                            Name <span className="text-gray-600">(optional)</span>
                         </label>
                         <input
                             type="text"
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-nebula-500 focus:ring-2 focus:ring-nebula-500/20 transition-all font-inter"
+                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/5 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
                             placeholder="Enter your name"
                         />
                     </div>
 
                     {/* Email Input */}
                     <div className="space-y-2">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-400">
                             Email *
                         </label>
                         <input
@@ -218,7 +218,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-3 bg-void/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyber-500 focus:ring-2 focus:ring-cyber-500/20 transition-all font-inter"
+                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/5 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
                             placeholder="you@example.com"
                         />
                     </div>
