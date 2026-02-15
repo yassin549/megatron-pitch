@@ -1,4 +1,5 @@
 import { Pool } from 'pg';
+import crypto from 'node:crypto';
 import { nanoid } from 'nanoid';
 
 // Initializing the pool only if the environment variable is present prevents build-time errors.

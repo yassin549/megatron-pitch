@@ -83,18 +83,21 @@ export async function POST(request: NextRequest) {
                 );
             }
 
-            console.error('Supabase error:', error);
+            console.error('Supabase error detailed:', JSON.stringify(error));
             return NextResponse.json(
-                { error: 'Failed to join waitlist. Please try again.' },
+                { error: `Failed to join waitlist: ${error.message || 'Please try again.'}` },
                 { status: 500 }
             );
         }
 
         // Create platform user (shadow account)
-        ensurePlatformUser(email).catch(err => {
-            console.error('Failed to create platform user:', err);
-            // Don't fail the request if platform user creation fails
-        });
+        try {
+            ensurePlatformUser(email).catch(err => {
+                console.error('Failed to create platform user asynchronously:', err);
+            });
+        } catch (syncErr) {
+            console.error('Synchronous error calling ensurePlatformUser:', syncErr);
+        }
 
         // Success response
         return NextResponse.json({
