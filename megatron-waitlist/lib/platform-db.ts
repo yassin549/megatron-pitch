@@ -1,16 +1,22 @@
 import { Pool } from 'pg';
 import { nanoid } from 'nanoid';
 
-const params = new URL(process.env.PLATFORM_DATABASE_URL!);
-
-const pool = new Pool({
-    connectionString: process.env.PLATFORM_DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+// Initializing the pool only if the environment variable is present prevents build-time errors.
+// The checks inside ensurePlatformUser ensure runtime safety.
+const pool = process.env.PLATFORM_DATABASE_URL
+    ? new Pool({
+        connectionString: process.env.PLATFORM_DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    })
+    : null;
 
 export async function ensurePlatformUser(email: string) {
+    if (!pool) {
+        console.warn('PLATFORM_DATABASE_URL is not set. Skipping platform user creation.');
+        return null;
+    }
     const client = await pool.connect();
     try {
         // Check if user exists (using double quotes for case sensitivity if Prisma created tables)
