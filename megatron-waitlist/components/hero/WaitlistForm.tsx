@@ -176,10 +176,10 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
             {...animations.fadeInUp}
             className="relative group"
         >
-            <div className="relative overflow-hidden rounded-2xl bg-white/[0.02] backdrop-blur-3xl border border-white/5 hover:border-blue-500/20 transition-all duration-500 p-8 shadow-2xl">
-                {/* Animated Border Glow - subtler */}
+            <div className="relative overflow-hidden rounded-2xl bg-transparent border border-white/10 hover:border-blue-500/20 transition-all duration-500 p-8 shadow-none">
+                {/* Animated Border Glow - even subtler */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-blue-500/10 blur-xl animate-glow-pulse" />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-cyan-500/5 to-blue-500/5 blur-xl animate-glow-pulse" />
                 </div>
 
                 <div className="relative z-10 space-y-6">
@@ -202,7 +202,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/5 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
+                            className="w-full px-4 py-3 bg-transparent border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
                             placeholder="Enter your name"
                         />
                     </div>
@@ -218,7 +218,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/5 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
+                            className="w-full px-4 py-3 bg-transparent border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all font-inter"
                             placeholder="you@example.com"
                         />
                     </div>
