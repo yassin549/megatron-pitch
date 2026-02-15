@@ -28,12 +28,12 @@ export default function HomePage() {
                         className="space-y-10 text-center md:text-left"
                     >
                         <div>
-                            <div className="inline-block px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono tracking-widest uppercase">
+                            <div className="inline-block px-4 py-2 mb-4 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono tracking-widest uppercase">
                                 V1.0 Public Beta
                             </div>
 
                             {/* Clean Gradient Typography - No Blur */}
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-space leading-none mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-space leading-tight mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
                                 megatron
                             </h1>
                         </div>
