@@ -91,22 +91,22 @@ export default function WaitlistOverlay({ isOpen, onClose }: WaitlistOverlayProp
                                 </p>
 
                                 <form onSubmit={handleSubmit} className="max-w-md mx-auto relative group">
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyber-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                                    <div className="relative flex rounded-xl bg-void shadow-2xl p-2 border border-white/10">
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyber-500 rounded-xl opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+                                    <div className="relative flex rounded-xl bg-white/[0.03] backdrop-blur-md shadow-2xl p-2 border border-white/10 group-hover:border-primary/30 transition-all">
                                         <input
                                             type="email"
                                             placeholder="enter@email.com"
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="flex-1 bg-transparent px-4 py-3 outline-none text-white placeholder-gray-600 font-mono"
+                                            className="flex-1 bg-transparent px-4 py-3 outline-none text-white placeholder-gray-500 font-mono"
                                         />
                                         <button
                                             type="submit"
                                             disabled={status === 'loading'}
-                                            className="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
+                                            className="px-6 py-3 bg-gradient-to-r from-white to-gray-200 text-black font-bold rounded-lg hover:from-gray-100 hover:to-white transition-all disabled:opacity-50 shadow-lg"
                                         >
-                                            {status === 'loading' ? 'DYING...' : 'JOIN'}
+                                            {status === 'loading' ? 'JOINING...' : 'JOIN'}
                                         </button>
                                     </div>
                                     {status === 'error' && (

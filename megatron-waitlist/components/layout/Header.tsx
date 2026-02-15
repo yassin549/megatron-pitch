@@ -18,8 +18,8 @@ export default function Header({ onJoinWaitlist }: HeaderProps) {
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
             {/* Glass Container */}
-            <div className="mx-auto max-w-5xl mt-6">
-                <div className="mx-4 rounded-2xl glass-panel bg-void/30 backdrop-blur-md border border-white/5 flex items-center justify-between px-6 py-4 shadow-depth">
+            <div className="mx-auto max-w-5xl mt-3">
+                <div className="mx-4 rounded-2xl glass-panel bg-void/30 backdrop-blur-md border border-white/5 flex items-center justify-between px-6 py-2.5 shadow-depth">
 
                     {/* Logo Area */}
                     <div className="flex items-center gap-3">
