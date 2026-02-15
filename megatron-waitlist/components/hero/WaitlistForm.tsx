@@ -177,11 +177,11 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
             {...animations.fadeInUp}
             className="relative group"
         >
-            <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/50 transition-all duration-300 p-8 shadow-depth">
+            <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/50 transition-all duration-300 p-6 shadow-depth">
 
-                <div className="relative z-10 space-y-6">
+                <div className="relative z-10 space-y-4">
                     <div>
-                        <h3 className="text-2xl font-bold text-white font-space mb-2">
+                        <h3 className="text-xl font-bold text-white font-space mb-1">
                             Join the Waitlist
                         </h3>
                         <p className="text-gray-400 text-sm">
@@ -199,7 +199,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all font-inter"
+                            className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all font-inter"
                             placeholder="Enter your name"
                         />
                     </div>
@@ -215,7 +215,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all font-inter"
+                            className="w-full px-4 py-2.5 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all font-inter"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -250,7 +250,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                         <button
                             type="submit"
                             disabled={isSubmitting || !email}
-                            className="flex-1 group/btn relative overflow-hidden px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-blue-900/40 disabled:opacity-50 disabled:cursor-not-allowed text-center border border-white/10"
+                            className="flex-1 group/btn relative overflow-hidden px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-blue-900/40 disabled:opacity-50 disabled:cursor-not-allowed text-center border border-white/10"
                         >
                             <motion.div
                                 className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10"
@@ -276,7 +276,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                             href="https://megatron-beta.vercel.app"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 text-blue-100 rounded-lg font-semibold transition-all group"
+                            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500/50 text-blue-100 rounded-lg font-semibold transition-all group"
                         >
                             <span>View MVP</span>
                             <svg className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,7 +295,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                     <button
                         type="button"
                         onClick={() => signIn('google', { callbackUrl: '/' })}
-                        className="w-full flex items-center justify-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                        className="w-full flex items-center justify-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-2.5 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
                     >
                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                             <path
