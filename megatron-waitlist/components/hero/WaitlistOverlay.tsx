@@ -92,7 +92,7 @@ export default function WaitlistOverlay({ isOpen, onClose }: WaitlistOverlayProp
 
                                 <form onSubmit={handleSubmit} className="max-w-md mx-auto relative group">
                                     <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyber-500 rounded-xl opacity-10 group-hover:opacity-30 transition duration-1000"></div>
-                                    <div className="relative flex rounded-xl bg-white/[0.03] backdrop-blur-md shadow-2xl p-2 border border-white/10 group-hover:border-primary/30 transition-all">
+                                    <div className="relative flex rounded-xl bg-white/[0.03] shadow-2xl p-2 border border-white/10 group-hover:border-primary/30 transition-all">
                                         <input
                                             type="email"
                                             placeholder="enter@email.com"
