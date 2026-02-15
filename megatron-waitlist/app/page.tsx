@@ -18,7 +18,7 @@ export default function HomePage() {
 
             {/* Hero Section with Inline Waitlist */}
             <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-32">
-                <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
+                <div className="max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
 
                     {/* Text Content */}
                     <motion.div

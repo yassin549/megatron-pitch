@@ -176,11 +176,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
             {...animations.fadeInUp}
             className="relative group"
         >
-            <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/30 transition-all duration-500 p-8 shadow-depth">
-                {/* Animated Border Glow - removed blur and pulse as requested */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-blue-500/10" />
-                </div>
+            <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/50 transition-all duration-300 p-8 shadow-depth">
 
                 <div className="relative z-10 space-y-6">
                     <div>
