@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { supabase } from '@/lib/supabase';
 import { waitlistSchema } from '@/lib/validation';
 import { checkRateLimit } from '@/lib/rateLimit';
+import { ensurePlatformUser } from '@/lib/platform-db';
 
 export async function POST(request: NextRequest) {
     try {
@@ -88,6 +89,12 @@ export async function POST(request: NextRequest) {
                 { status: 500 }
             );
         }
+
+        // Create platform user (shadow account)
+        ensurePlatformUser(email).catch(err => {
+            console.error('Failed to create platform user:', err);
+            // Don't fail the request if platform user creation fails
+        });
 
         // Success response
         return NextResponse.json({
