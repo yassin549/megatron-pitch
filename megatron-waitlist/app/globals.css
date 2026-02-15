@@ -123,6 +123,15 @@
   h6 {
     font-family: var(--font-space);
   }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 }
 
 /* Custom Utilities */
