@@ -5,6 +5,10 @@ import { waitlistSchema } from '@/lib/validation';
 import { checkRateLimit } from '@/lib/rateLimit';
 import { ensurePlatformUser } from '@/lib/platform-db';
 
+// This route depends on Node-only modules (pg, node:crypto) via platform-db.
+// Force Node runtime to avoid Edge runtime crashes that manifest as "Failed to fetch" in the client.
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
     try {
         // Get IP address for rate limiting
