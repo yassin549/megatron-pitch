@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
-import { supabase } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 import { waitlistSchema } from '@/lib/validation';
 import { checkRateLimit } from '@/lib/rateLimit';
 import { ensurePlatformUser } from '@/lib/platform-db';
@@ -11,6 +11,14 @@ export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
     try {
+        const supabaseAdmin = getSupabaseAdmin();
+        if (!supabaseAdmin) {
+            return NextResponse.json(
+                { error: 'Supabase admin client not configured. Set SUPABASE_SERVICE_ROLE_KEY.' },
+                { status: 500 }
+            );
+        }
+
         // Get IP address for rate limiting
         const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
 
@@ -60,7 +68,7 @@ export async function POST(request: NextRequest) {
         const referredBy = body.referredBy || null;
 
         // Insert into Supabase
-        const { data, error } = await supabase
+        const { data, error } = await supabaseAdmin
             .from('waitlist')
             .insert([
                 {

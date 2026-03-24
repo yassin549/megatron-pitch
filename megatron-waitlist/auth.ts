@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 import { ensurePlatformUser } from "./lib/platform-db"
-import { supabase } from "./lib/supabase"
+import { getSupabaseAdmin } from "./lib/supabase-admin"
 import { nanoid } from "nanoid"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -18,12 +18,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 try {
                     console.log(`Google sign in for ${user.email}`);
 
+                    const supabaseAdmin = getSupabaseAdmin();
+                    if (!supabaseAdmin) {
+                        console.warn("Supabase admin client not configured. Skipping waitlist sync.");
+                        return true;
+                    }
+
                     // 1. Ensure user exists in Platform DB (Neon)
                     await ensurePlatformUser(user.email);
 
                     // 2. Add to Waitlist (Supabase) if not already present
                     // Check if exists in waitlist
-                    const { data: existingWaitlist } = await supabase
+                    const { data: existingWaitlist } = await supabaseAdmin
                         .from('waitlist')
                         .select('email')
                         .eq('email', user.email)
@@ -32,7 +38,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     if (!existingWaitlist) {
                         const referralCode = nanoid(8).toUpperCase();
 
-                        await supabase
+                        await supabaseAdmin
                             .from('waitlist')
                             .insert([
                                 {
