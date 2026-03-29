@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 export default function HomePage() {
     return (
-        <main className="relative min-h-screen text-white pb-[calc(env(safe-area-inset-bottom)+5.5rem)] md:pb-0">
+        <main className="relative min-h-screen text-white pb-[calc(env(safe-area-inset-bottom)+5.5rem)] md:pb-0 overflow-x-hidden">
             {/* Deep Space Background */}
             <SpaceBackground />
 

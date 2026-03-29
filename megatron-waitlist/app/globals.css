@@ -113,6 +113,7 @@
     color: var(--color-text-main);
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
+    width: 100%;
   }
 
   h1,
@@ -306,6 +307,8 @@
 /* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Optional: Scroll Snap (can be enabled for even smoother section scrolling) */
