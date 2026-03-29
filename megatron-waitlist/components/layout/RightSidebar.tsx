@@ -30,10 +30,10 @@ const Icons = {
 
 // Updated IDs to match generated content exactly - 5 major sections
 const navItems = [
-    { id: 'the-problem-vision', icon: Icons.Problem, label: 'Problem & Vision', color: '#EF4444' },
-    { id: 'the-solution', icon: Icons.Solution, label: 'The Solution', color: '#F59E0B' },
-    { id: 'why-megatron', icon: Icons.Why, label: 'Why Megatron', color: '#10B981' },
-    { id: 'claim-your-edge', icon: Icons.Join, label: 'Claim Your Edge', color: '#8B5CF6' },
+    { id: 'the-problem-vision', icon: Icons.Problem, label: 'Problem & Vision', shortLabel: 'Problem', color: '#EF4444' },
+    { id: 'the-solution', icon: Icons.Solution, label: 'The Solution', shortLabel: 'Solution', color: '#F59E0B' },
+    { id: 'why-megatron', icon: Icons.Why, label: 'Why Megatron', shortLabel: 'Why', color: '#10B981' },
+    { id: 'claim-your-edge', icon: Icons.Join, label: 'Claim Your Edge', shortLabel: 'Join', color: '#8B5CF6' },
 ];
 
 function DockItem({
@@ -50,6 +50,7 @@ function DockItem({
             onClick={onClick}
             whileHover={{ scale: 1.4 }}
             className="group relative flex items-center justify-center w-12 h-12 rounded-full cursor-pointer z-20 outline-none"
+            aria-label={item.label}
         >
             {/* Tooltip */}
             <motion.span
@@ -79,6 +80,48 @@ function DockItem({
                     )}
                 </AnimatePresence>
             </span>
+        </motion.button>
+    );
+}
+
+function BottomNavItem({
+    item,
+    isActive,
+    onClick
+}: {
+    item: any;
+    isActive: boolean;
+    onClick: () => void;
+}) {
+    return (
+        <motion.button
+            onClick={onClick}
+            whileTap={{ scale: 0.95 }}
+            className="relative flex flex-col items-center justify-center gap-1 w-14 h-12 rounded-2xl outline-none"
+            aria-label={item.label}
+        >
+            <span
+                className="relative z-10 transition-colors duration-200"
+                style={{
+                    color: isActive ? '#FFFFFF' : item.color,
+                }}
+            >
+                <item.icon className={`w-5 h-5 ${isActive ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+            </span>
+            <span className={`text-[10px] font-mono tracking-wide ${isActive ? 'text-white' : 'text-white/60'}`}>
+                {item.shortLabel ?? item.label}
+            </span>
+            <AnimatePresence>
+                {isActive && (
+                    <motion.div
+                        layoutId="activeDotMobile"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        className="absolute -top-1 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                    />
+                )}
+            </AnimatePresence>
         </motion.button>
     );
 }
@@ -146,42 +189,96 @@ export default function RightSidebar() {
     };
 
     return (
-        <nav
-            className="fixed right-6 top-0 bottom-0 z-50 hidden md:flex flex-col justify-center items-center pointer-events-none"
-        >
-            <div className="pointer-events-auto glass-panel px-3 py-6 rounded-full bg-void/40 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-6 shadow-2xl transition-all duration-300">
+        <>
+            <nav
+                className="fixed right-6 top-0 bottom-0 z-50 hidden md:flex flex-col justify-center items-center pointer-events-none"
+            >
+                <div className="pointer-events-auto glass-panel px-3 py-6 rounded-full bg-void/40 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-6 shadow-2xl transition-all duration-300">
 
-                {/* Official Logo (Hero Link) */}
-                <motion.div
-                    onClick={() => scrollTo('hero')}
-                    className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow z-10 shrink-0"
-                    style={{ borderColor: activeSection === 'hero' ? '#3B82F6' : 'transparent' }}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Image
-                        src="/logo.jpeg"
-                        alt="Megatron"
-                        fill
-                        className="object-cover"
-                    />
-                </motion.div>
-
-                {/* Divider */}
-                <div className="w-8 h-[1px] bg-white/10 shrink-0" />
-
-                {/* Vertical Mac Dock */}
-                <div className="flex flex-col gap-4 items-center">
-                    {navItems.map((item) => (
-                        <DockItem
-                            key={item.id}
-                            item={item}
-                            isActive={activeSection === item.id}
-                            onClick={() => scrollTo(item.id)}
+                    {/* Official Logo (Hero Link) */}
+                    <motion.div
+                        onClick={() => scrollTo('hero')}
+                        className="relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer shadow-glow z-10 shrink-0"
+                        style={{ borderColor: activeSection === 'hero' ? '#3B82F6' : 'transparent' }}
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Image
+                            src="/logo.jpeg"
+                            alt="Megatron"
+                            fill
+                            className="object-cover"
                         />
-                    ))}
+                    </motion.div>
+
+                    {/* Divider */}
+                    <div className="w-8 h-[1px] bg-white/10 shrink-0" />
+
+                    {/* Vertical Mac Dock */}
+                    <div className="flex flex-col gap-4 items-center">
+                        {navItems.map((item) => (
+                            <DockItem
+                                key={item.id}
+                                item={item}
+                                isActive={activeSection === item.id}
+                                onClick={() => scrollTo(item.id)}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+
+            {/* Mobile iOS-style Bottom Navigation */}
+            <nav className="fixed left-0 right-0 bottom-0 z-50 md:hidden pointer-events-none">
+                <div className="pointer-events-auto mx-auto w-[min(96vw,520px)] glass-panel bg-void/60 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-[28px] px-3 pt-2 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
+                    <div className="flex items-center justify-between gap-2">
+                        <motion.button
+                            onClick={() => scrollTo('hero')}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative flex flex-col items-center justify-center gap-1 w-14 h-12 rounded-2xl outline-none"
+                            aria-label="Home"
+                        >
+                            <span
+                                className="relative z-10 transition-colors duration-200"
+                                style={{
+                                    color: activeSection === 'hero' ? '#FFFFFF' : '#60A5FA',
+                                }}
+                            >
+                                <Image
+                                    src="/logo.jpeg"
+                                    alt="Megatron"
+                                    width={22}
+                                    height={22}
+                                    className="rounded-full"
+                                />
+                            </span>
+                            <span className={`text-[10px] font-mono tracking-wide ${activeSection === 'hero' ? 'text-white' : 'text-white/60'}`}>
+                                Home
+                            </span>
+                            <AnimatePresence>
+                                {activeSection === 'hero' && (
+                                    <motion.div
+                                        layoutId="activeDotMobile"
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0 }}
+                                        className="absolute -top-1 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                                    />
+                                )}
+                            </AnimatePresence>
+                        </motion.button>
+
+                        {navItems.map((item) => (
+                            <BottomNavItem
+                                key={item.id}
+                                item={item}
+                                isActive={activeSection === item.id}
+                                onClick={() => scrollTo(item.id)}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </nav>
+        </>
     );
 }
