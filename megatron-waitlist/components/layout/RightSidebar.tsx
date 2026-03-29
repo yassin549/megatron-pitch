@@ -229,9 +229,9 @@ export default function RightSidebar() {
             </nav>
 
             {/* Mobile iOS-style Bottom Navigation */}
-            <nav className="fixed left-0 right-0 bottom-0 z-50 md:hidden pointer-events-none">
-                <div className="pointer-events-auto mx-auto w-[min(96vw,520px)] glass-panel bg-void/60 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-[28px] px-3 pt-2 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
-                    <div className="flex items-center justify-between gap-2">
+            <nav className="fixed left-1/2 -translate-x-1/2 bottom-[calc(env(safe-area-inset-bottom)+0.85rem)] z-[60] md:hidden pointer-events-none">
+                <div className="pointer-events-auto mx-auto w-[min(92vw,480px)] glass-panel bg-void/60 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-[28px] px-4 py-3">
+                    <div className="flex items-center justify-between gap-1">
                         <motion.button
                             onClick={() => scrollTo('hero')}
                             whileTap={{ scale: 0.95 }}
